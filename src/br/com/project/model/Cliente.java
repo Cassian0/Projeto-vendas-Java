@@ -19,27 +19,7 @@ public class Cliente implements Serializable {
     protected String complemento;
     protected String estado;
 
-    public Cliente() {
-
-    }
-
-    public Cliente(Integer codigo, String nome, String email, String cep, String endereco, String bairro, String cidade, String cpf, String rg, String celular, String telefone, String numero, String complemento, String estado) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.email = email;
-        this.cep = cep;
-        this.endereco = endereco;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.celular = celular;
-        this.telefone = telefone;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.estado = estado;
-    }
-
+  
     public Integer getCodigo() {
         return codigo;
     }
