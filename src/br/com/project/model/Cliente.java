@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Cliente implements Serializable {
 
-    protected Integer codigo;
-    protected String nome;
+    protected int id;
+    protected String name;
     protected String email;
     protected String cep;
     protected String endereco;
@@ -15,25 +15,24 @@ public class Cliente implements Serializable {
     protected String rg;
     protected String celular;
     protected String telefone;
-    protected String numero;
+    protected int numero;
     protected String complemento;
     protected String estado;
 
-  
-    public Integer getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -108,11 +107,11 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -134,7 +133,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return " Codigo:" + this.codigo + " \n Nome: " + this.nome + "\n E-mail: " + this.email
+        return " Codigo:" + this.id + " \n Nome: " + this.name + "\n E-mail: " + this.email
                 + "\n Cep: " + this.cep + "\n Endereço: " + this.endereco + "\n Bairro: " + this.bairro
                 + "\n Cidade: " + this.cidade + "\n Estado: " + this.estado + "\n CPF: " + this.cpf + "\n RG: "
                 + this.rg + "\n Celular: " + this.celular + "\n Telefone: " + this.telefone + "\n Numero: "
