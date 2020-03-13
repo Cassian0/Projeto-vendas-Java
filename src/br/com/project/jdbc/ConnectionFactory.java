@@ -13,7 +13,7 @@ public class ConnectionFactory {
 
         try {
 
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/bdvendas", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/salesdb", "root", "");
 
         } catch (Exception erro) {
             throw new RuntimeException(erro);

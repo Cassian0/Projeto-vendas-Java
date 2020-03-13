@@ -5,6 +5,9 @@
  */
 package br.com.project.view;
 
+import br.com.project.dao.ClientDao;
+import br.com.project.model.Client;
+
 /**
  *
  * @author Cassiano
@@ -331,6 +334,11 @@ public class JfClient extends javax.swing.JFrame {
         btnNovo.setText("Novo");
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
 
@@ -377,6 +385,29 @@ public class JfClient extends javax.swing.JFrame {
     private void comBoxEstadoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxEstadoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comBoxEstadoClienteActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // BOTAO SALVAR;
+
+        Client client = new Client();
+
+        client.setName(txtNomeCliente.getText());
+        client.setIdentityDocument(txtRgCliente.getText());
+        client.setIndividualRegistration(txtCpfCliente.getText());
+        client.setEmail(txtEmailCliente.getText());
+        client.setPhone(txtTelefoneCliente.getText());
+        client.setCellPhone(txtCelularCliente.getText());
+        client.setZipCode(txtCepCliente.getText());
+        client.setAddress(txtEnderecoCliente.getText());
+        client.setNumber(Integer.parseInt(txtNumeroCliente.getText()));
+        client.setComplement(txtCompCliente.getText());
+        client.setNeighborhood(txtBairroCliente.getText());
+        client.setCity(txtCidadeCliente.getText());
+        client.setState(comBoxEstadoCliente.getSelectedItem().toString());
+        
+        ClientDao clientDao = new ClientDao();
+        clientDao.registerClient(client);
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

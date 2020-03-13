@@ -1,6 +1,6 @@
 package br.com.project.model;
 
-public class Funcionario extends Cliente {
+public class Employee extends Client {
 
     private String cargo;
     private String senha;
