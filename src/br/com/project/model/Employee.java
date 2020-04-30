@@ -2,32 +2,32 @@ package br.com.project.model;
 
 public class Employee extends Client {
 
-    private String cargo;
-    private String senha;
-    private String nivelAcesso;
+    private String role; // CARGO
+    private String password;
+    private String accessLevel; //NIVEL DE ACESSO
 
-    public String getCargo() {
-        return cargo;
+    public String getRole() {
+        return role;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getNivelAcesso() {
-        return nivelAcesso;
+    public String getAccessLevel() {
+        return accessLevel;
     }
 
-    public void setNivelAcesso(String nivelAcesso) {
-        this.nivelAcesso = nivelAcesso;
+    public void setAccessLevel(String accessLevel) {
+        this.accessLevel = accessLevel;
     }
 
 }
