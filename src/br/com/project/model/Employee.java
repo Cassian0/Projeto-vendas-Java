@@ -1,17 +1,19 @@
 package br.com.project.model;
 
-public class Employee extends Client {
+import java.io.Serializable;
 
-    private String role; // CARGO
+public class Employee extends Client implements Serializable {
+
+    private String jobRole; // CARGO
     private String password;
     private String accessLevel; //NIVEL DE ACESSO
 
-    public String getRole() {
-        return role;
+    public String getJobRole() {
+        return jobRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setJobRole(String jobRole) {
+        this.jobRole = jobRole;
     }
 
     public String getPassword() {

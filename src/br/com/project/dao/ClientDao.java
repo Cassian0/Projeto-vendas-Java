@@ -67,8 +67,8 @@ public class ClientDao {
 
         try {
 //            COMANDO SQL QUE É EXECUTADO NO BANCO DE DADOS
-            String sql = "SELECT * FROM clients";
-            prepared = connection.prepareStatement(sql);
+            String query = "SELECT * FROM clients";
+            prepared = connection.prepareStatement(query);
 //            SEMPRE QUE FOR EXECUTADO UM SELECT NO BANCO DE DADOS INSTANCIAR RESULTSET
             result = prepared.executeQuery();
 
@@ -86,7 +86,7 @@ public class ClientDao {
                 client.setAddress(result.getString("address"));
                 client.setNumber(result.getInt("number"));
                 client.setComplement(result.getString("complement"));
-                client.setNeighborhood(result.getString("newighborhood"));
+                client.setNeighborhood(result.getString("neighborhood"));
                 client.setCity(result.getString("city"));
                 client.setState(result.getString("state"));
 //           ADICIONA O CLIENTE NA LISTA DE CLIENTES
@@ -105,12 +105,12 @@ public class ClientDao {
 
         try {
 //            COMANDO SQL
-            String sql = "UPDATE clients SET name = ?, identityDocument = ?, individualRegistration = ?,"
+            String query = "UPDATE clients SET name = ?, identityDocument = ?, individualRegistration = ?,"
                     + "email = ?, phone = ?, cellPhone = ?, zipCode = ?, address = ?, number = ?,"
                     + "complement = ?, neighborhood = ?, city = ?, state = ? WHERE id = ?";
 
 //            CONECTAR COM O BANCO DE DADOS E ORGANIZAR O COMANDO SQL
-            prepared = connection.prepareStatement(sql);
+            prepared = connection.prepareStatement(query);
             prepared.setString(1, client.getName());
             prepared.setString(2, client.getIdentityDocument());
             prepared.setString(3, client.getIndividualRegistration());
@@ -143,10 +143,10 @@ public class ClientDao {
 
         try {
 //            COMANDO SQL
-            String sql = "DELETE FROM clients WHERE id = ?";
+            String query = "DELETE * FROM clients WHERE id = ?";
 
 //            CONECTAR COM O BANCO DE DADOS E ORGANIZAR O COMANDO SQL
-            prepared = connection.prepareStatement(sql);
+            prepared = connection.prepareStatement(query);
             prepared.setInt(1, client.getId());
 
 //            EXECUTA E FECHA O COMANDO SQL
@@ -166,8 +166,8 @@ public class ClientDao {
 
         try {
 //        COMANDO SQL
-            String sql = "SELECT * FROM clients WHERE name LIKE ?";
-            prepared = connection.prepareStatement(sql);
+            String query = "SELECT * FROM clients WHERE name LIKE ?";
+            prepared = connection.prepareStatement(query);
             prepared.setString(1, "%" + name + "%");
 
             result = prepared.executeQuery();
