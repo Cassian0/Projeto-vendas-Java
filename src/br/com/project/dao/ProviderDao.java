@@ -22,7 +22,7 @@ public class ProviderDao {
     public void registerProvider(Provider provider) {
         try {
             String query = "INSERT INTO providers (name, companyIdentificationNumber, email, phone,"
-                    + "cellPhone, zipCode, address, number, complement, neighbohood,"
+                    + "cellPhone, zipCode, address, number, complement, neighborhood,"
                     + "city, state) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 
             prepared = connection.prepareStatement(query);
@@ -120,7 +120,7 @@ public class ProviderDao {
     public void deleteProvider(Provider provider) {
 
         try {
-            String query = "DELETE * FROM providers WHERE id = ?";
+            String query = "DELETE FROM providers WHERE id = ?";
 
             prepared = connection.prepareStatement(query);
             prepared.setInt(1, provider.getId());

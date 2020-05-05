@@ -143,7 +143,7 @@ public class ClientDao {
 
         try {
 //            COMANDO SQL
-            String query = "DELETE * FROM clients WHERE id = ?";
+            String query = "DELETE FROM clients WHERE id = ?";
 
 //            CONECTAR COM O BANCO DE DADOS E ORGANIZAR O COMANDO SQL
             prepared = connection.prepareStatement(query);

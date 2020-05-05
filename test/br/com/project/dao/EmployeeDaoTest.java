@@ -17,7 +17,7 @@ public class EmployeeDaoTest {
 //    @Test
     public void testRegisterEmployee() {
         System.out.println("Cadastrar:");
-        employee = returnEmployee();
+//        employee = returnEmployee();
         employeeDao.registerEmployee(employee);
 
     }
@@ -52,8 +52,8 @@ public class EmployeeDaoTest {
 //    @Test
     public void testChangeEmployee() {
         System.out.println("Alterar Funcionario:");
-        int id = 0;
-        employee = returnEmployee();
+        int id = 1;
+        employee = returnEmployee(id);
         employeeDao.changeEmployee(employee);
 
     }
@@ -61,7 +61,7 @@ public class EmployeeDaoTest {
 //    @Test
     public void testDeleteEmployee() {
         System.out.println("Deletar Funcionario:");
-        int id = 0;
+        int id = 2;
         employee = new Employee();
         employee.setId(id);
         employeeDao.deleteEmployee(employee);
@@ -71,7 +71,7 @@ public class EmployeeDaoTest {
 //    @Test
     public void testSearchEmployeeByName() {
         System.out.println("Pesquisar funcionário por nome:");
-        String name = "";
+        String name = "t";
         dataEmployee = employeeDao.searchEmployeeByName(name);
         for (Employee employee1 : dataEmployee) {
             System.out.println("ID: " + employee1.getId());
@@ -96,26 +96,26 @@ public class EmployeeDaoTest {
         }
     }
 
-    public Employee returnEmployee() {
+    public Employee returnEmployee(int id) {
         employee = new Employee();
-        employee.setName("tiago");
-        employee.setIdentityDocument("12345678");
-        employee.setIndividualRegistration("55555555");
-        employee.setEmail("tiago@test");
-        employee.setPhone("1111111");
-        employee.setCellPhone("333333333");
-        employee.setZipCode("88123333");
-        employee.setAddress("estrada de chão");
-        employee.setNumber(15);
-        employee.setComplement("barraco");
-        employee.setNeighborhood("isolado");
-        employee.setCity("caipiracity");
-        employee.setState("estado dos loucos");
-        employee.setPassword("0000000");
-        employee.setJobRole("estagiario");
-        employee.setAccessLevel("basico");
+        employee.setName("Jonas");
+        employee.setIdentityDocument("44444444");
+        employee.setIndividualRegistration("00000000");
+        employee.setEmail("tiago@Jonas");
+        employee.setPhone("122222222");
+        employee.setCellPhone("777777777");
+        employee.setZipCode("88888888888");
+        employee.setAddress("chão");
+        employee.setNumber(20);
+        employee.setComplement("casa");
+        employee.setNeighborhood("centro");
+        employee.setCity("city");
+        employee.setState("ca");
+        employee.setPassword("9999999");
+        employee.setJobRole("gerente");
+        employee.setAccessLevel("master");
 
-        employee.setId(0);
+        employee.setId(2);
 
         return employee;
     }

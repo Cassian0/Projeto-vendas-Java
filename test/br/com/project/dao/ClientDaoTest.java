@@ -47,7 +47,7 @@ public class ClientDaoTest {
 //    @Test
     public void testChangeClient() {
         System.out.println("Alterar Cliente:");
-        int id = 0;
+        int id = 2;
         client = returnClient(id);
         clientDao.changeClient(client);
     }
@@ -55,16 +55,16 @@ public class ClientDaoTest {
 //    @Test
     public void testDeleteClient() {
         System.out.println("Daletar Cliente:");
-        int id = 0;
+        int id = 1;
         client = new Client();
-        client.setId(id);
+        client.setId(id);   
         clientDao.deleteClient(client);
     }
 
 //    @Test
     public void testSearchClientByName() {
         System.out.println("Pesquisar Cliente por Nome:");
-        String name = "";
+        String name = "j";
         dataClient = clientDao.searchClientByName(name);
         for (Client client1 : dataClient) {
             System.out.println("ID: " + client1.getId());
@@ -87,20 +87,20 @@ public class ClientDaoTest {
 
     public Client returnClient(int id) {
         client = new Client();
-        client.setName("joao");
-        client.setIdentityDocument("1245789");
-        client.setIndividualRegistration("111111111");
-        client.setEmail("test@test");
-        client.setPhone("999999999");
-        client.setCellPhone("88888888888");
-        client.setAddress("rua sem saida");
-        client.setZipCode("88812323");
-        client.setNumber(10);
-        client.setComplement("casa");
-        client.setNeighborhood("Centro");
-        client.setCity("Sem volta");
-        client.setState("test");
-//        client.setId(id);
+        client.setName("Maria");
+        client.setIdentityDocument("5555555");
+        client.setIndividualRegistration("222222");
+        client.setEmail("test@@@@");
+        client.setPhone("77777777");
+        client.setCellPhone("6666666666");
+        client.setAddress("rua");
+        client.setZipCode("000000000");
+        client.setNumber(25);
+        client.setComplement("ca");
+        client.setNeighborhood("bairro");
+        client.setCity("Sei la");
+        client.setState("tu");
+        client.setId(id);
 
         return client;
     }

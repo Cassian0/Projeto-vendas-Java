@@ -99,7 +99,7 @@ public class EmployeeDao {
     public void changeEmployee(Employee employee) {
 
         try {
-            String query = "UPDATE employees SET name = ?, indetityDocument = ?, individualRegistration = ?,"
+            String query = "UPDATE employees SET name = ?, identityDocument = ?, individualRegistration = ?,"
                     + "email = ?, phone = ?, cellPhone = ?, zipCode = ?, address = ?, number = ?,"
                     + "complement = ?, neighborhood = ?, city = ?, state = ?, password = ?, jobRole = ?,"
                     + "accessLevel = ? WHERE id = ?";
@@ -136,7 +136,7 @@ public class EmployeeDao {
     public void deleteEmployee(Employee employee) {
 
         try {
-            String query = "DELETE * FROM employees WHERE id = ?";
+            String query = "DELETE FROM employees WHERE id = ?";
 
             prepared = connection.prepareStatement(query);
             prepared.setInt(1, employee.getId());
@@ -176,9 +176,9 @@ public class EmployeeDao {
                 employee.setComplement(result.getString("complement"));
                 employee.setNeighborhood(result.getString("neighborhood"));
                 employee.setCity(result.getString("city"));
-                employee.setState(result.getString("satate"));
+                employee.setState(result.getString("state"));
                 employee.setPassword(result.getString("password"));
-                employee.setJobRole(result.getString("joRole"));
+                employee.setJobRole(result.getString("jobRole"));
                 employee.setAccessLevel(result.getString("AccessLevel"));
 
                 dataEmployee.add(employee);

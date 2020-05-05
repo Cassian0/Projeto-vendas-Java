@@ -17,7 +17,7 @@ public class ProviderDaoTest {
 //    @Test
     public void testRegisterProvider() {
         System.out.println("Cadastrar:");
-        provider = returnProvider();
+//        provider = returnProvider();
         providerDao.registerProvider(provider);
     }
 
@@ -47,14 +47,14 @@ public class ProviderDaoTest {
     public void testChangeProvider() {
         System.out.println("Alterar Fornecedor:");
         int id = 0;
-        provider = returnProvider();
+        provider = returnProvider(id);
         providerDao.changeProvider(provider);
     }
 
 //    @Test
     public void testDeleteProvider() {
         System.out.println("Deletar Fornecedor:");
-        int id = 0;
+        int id = 2;
         provider = new Provider();
         provider.setId(id);
         providerDao.deleteProvider(provider);
@@ -64,7 +64,7 @@ public class ProviderDaoTest {
 //    @Test
     public void testSearchProviderByName() {
         System.out.println("Pesquisar fornecedor por nome:");
-        String name = "";
+        String name = "ma";
         dataProvider = providerDao.searchProviderByName(name);
         for (Provider provider1 : dataProvider) {
             System.out.println("ID: " + provider1.getId());
@@ -84,22 +84,22 @@ public class ProviderDaoTest {
         }
     }
 
-    public Provider returnProvider() {
+    public Provider returnProvider(int id) {
         provider = new Provider();
-        provider.setName("maria");
-        provider.setCompanyIdentificationNumber("5555555555");
-        provider.setEmail("maria@test");
-        provider.setPhone("7777777");
-        provider.setCellPhone("4444444444");
-        provider.setAddress("rua das hortaliças");
-        provider.setZipCode("8888123");
-        provider.setComplement("ap");
-        provider.setNumber(3);
-        provider.setNeighborhood("chique");
-        provider.setCity("burguesia");
-        provider.setState("Ceara");
+        provider.setName("danilo");
+        provider.setCompanyIdentificationNumber("00000000");
+        provider.setEmail("danilo@test");
+        provider.setPhone("333333333");
+        provider.setCellPhone("111111111");
+        provider.setAddress("hortaliças");
+        provider.setZipCode("66666666");
+        provider.setComplement("casa");
+        provider.setNumber(333);
+        provider.setNeighborhood("centro");
+        provider.setCity("city");
+        provider.setState("ba");
 
-        provider.setId(0);
+        provider.setId(2);
         return provider;
     }
 

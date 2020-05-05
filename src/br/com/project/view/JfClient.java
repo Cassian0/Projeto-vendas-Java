@@ -454,6 +454,7 @@ public class JfClient extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void comBoxEstadoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxEstadoClienteActionPerformed
@@ -544,6 +545,8 @@ public class JfClient extends javax.swing.JFrame {
         txtBairroCliente.setText(tabelaCiente.getValueAt(tabelaCiente.getSelectedRow(), 11).toString());
         txtCidadeCliente.setText(tabelaCiente.getValueAt(tabelaCiente.getSelectedRow(), 12).toString());
         comBoxEstadoCliente.setSelectedItem(tabelaCiente.getValueAt(tabelaCiente.getSelectedRow(), 13).toString());
+//        UTILIZADO PARA MANIPULAÇÃO DOS DADOS AO CLICAR PREENCHE A TELA DE CADASTRO, SENDO POSSIVEL ALTERAR
+//        EXCLUIR OU CADASTRAR A ENTIDADE COM NOVAS INFORMAÇÕES  
     }//GEN-LAST:event_tabelaCienteMouseClicked
 
     private void customer_consultation_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customer_consultation_panelMouseClicked
