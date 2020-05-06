@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.project.view;
 
 import br.com.project.dao.EmployeeDao;
@@ -55,7 +60,6 @@ public class JfEmployee extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         employee_consultation_panel = new javax.swing.JTabbedPane();
@@ -106,6 +110,11 @@ public class JfEmployee extends javax.swing.JFrame {
         buttonDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 255));
 
@@ -183,7 +192,7 @@ public class JfEmployee extends javax.swing.JFrame {
         });
 
         try {
-            txtZipCodeEmployee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###### - ###")));
+            txtZipCodeEmployee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##### - ###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -344,7 +353,7 @@ public class JfEmployee extends javax.swing.JFrame {
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtPhoneEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         personal_data_panelLayout.setVerticalGroup(
             personal_data_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,7 +458,7 @@ public class JfEmployee extends javax.swing.JFrame {
                         .addComponent(txtSearchEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonSearchEmployee)
-                        .addGap(0, 324, Short.MAX_VALUE)))
+                        .addGap(0, 290, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -495,13 +504,13 @@ public class JfEmployee extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(employee_consultation_panel)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(263, 263, 263)
                 .addComponent(buttonNew)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -512,44 +521,27 @@ public class JfEmployee extends javax.swing.JFrame {
                 .addComponent(buttonDelete)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(employee_consultation_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonChange)
                     .addComponent(buttonSave)
                     .addComponent(buttonNew)
                     .addComponent(buttonDelete))
-                .addGap(0, 21, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 802, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        listEmployee();
+    }//GEN-LAST:event_formWindowActivated
 
     private void txtNameEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameEmployeeActionPerformed
         // TODO add your handling code here:
@@ -559,25 +551,29 @@ public class JfEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailEmployeeActionPerformed
 
+    private void txtAddressEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressEmployeeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressEmployeeActionPerformed
+
+    private void txtPasswordEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordEmployeeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordEmployeeActionPerformed
+
     private void comBoxAccessLevelEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxAccessLevelEmployeeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comBoxAccessLevelEmployeeActionPerformed
 
-    private void txtNumberEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberEmployeeActionPerformed
+    private void txtJobRoleEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJobRoleEmployeeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumberEmployeeActionPerformed
+    }//GEN-LAST:event_txtJobRoleEmployeeActionPerformed
 
     private void txtComplementEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplementEmployeeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtComplementEmployeeActionPerformed
 
-    private void txtAddressEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressEmployeeActionPerformed
+    private void txtNumberEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberEmployeeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAddressEmployeeActionPerformed
-
-    private void txtJobRoleEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJobRoleEmployeeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtJobRoleEmployeeActionPerformed
+    }//GEN-LAST:event_txtNumberEmployeeActionPerformed
 
     private void txtCellPhoneEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCellPhoneEmployeeActionPerformed
         // TODO add your handling code here:
@@ -587,35 +583,36 @@ public class JfEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneEmployeeActionPerformed
 
-    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-        employee = new Employee();
+    private void txtSearchEmployeeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchEmployeeKeyPressed
 
-        employee.setName(txtNameEmployee.getText());
-        employee.setIdentityDocument(txtIdentityDocumentEmployee.getText());
-        employee.setIndividualRegistration(txtIndividualRegistrationEmployee.getText());
-        employee.setEmail(txtEmailEmployee.getText());
-        employee.setPhone(txtPhoneEmployee.getText());
-        employee.setCellPhone(txtCellPhoneEmployee.getText());
-        employee.setZipCode(txtZipCodeEmployee.getText());
-        employee.setAddress(txtAddressEmployee.getText());
-        employee.setNumber(Integer.parseInt(txtNumberEmployee.getText()));
-        employee.setComplement(txtComplementEmployee.getText());
-        employee.setNeighborhood(txtNeighborhoodEmployee.getText());
-        employee.setCity(txtCityEmployee.getText());
-        employee.setState(comBoxStateEmployee.getSelectedItem().toString());
-        employee.setPassword(txtPasswordEmployee.getPassword().toString());
-        employee.setJobRole(txtJobRoleEmployee.getText());
-        employee.setAccessLevel(comBoxAccessLevelEmployee.getSelectedItem().toString());
-
+        String name = txtSearchEmployee.getText();
         employeeDao = new EmployeeDao();
-        employeeDao.registerEmployee(employee);
+        dataEmployee = employeeDao.searchEmployeeByName(name);
+        dataTable = (DefaultTableModel) employeeTable.getModel();
+        dataTable.setNumRows(0);
 
-        new Utilities().cleanScreen(personal_data_panel);
-    }//GEN-LAST:event_buttonSaveActionPerformed
-
-    private void txtPasswordEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordEmployeeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordEmployeeActionPerformed
+        for (Employee employee1 : dataEmployee) {
+            dataTable.addRow(new Object[]{
+                employee1.getId(),
+                employee1.getName(),
+                employee1.getIdentityDocument(),
+                employee1.getIndividualRegistration(),
+                employee1.getEmail(),
+                employee1.getPhone(),
+                employee1.getCellPhone(),
+                employee1.getZipCode(),
+                employee1.getAddress(),
+                employee1.getNumber(),
+                employee1.getComplement(),
+                employee1.getNeighborhood(),
+                employee1.getCity(),
+                employee1.getState(),
+                employee1.getPassword(),
+                employee1.getJobRole(),
+                employee1.getAccessLevel()
+            });
+        }
+    }//GEN-LAST:event_txtSearchEmployeeKeyPressed
 
     private void buttonSearchEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchEmployeeActionPerformed
         String name = txtSearchEmployee.getText();
@@ -668,8 +665,38 @@ public class JfEmployee extends javax.swing.JFrame {
         txtPasswordEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 14).toString());
         txtJobRoleEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 15).toString());
         comBoxAccessLevelEmployee.setSelectedItem(employeeTable.getValueAt(employeeTable.getSelectedRow(), 16).toString());
-
     }//GEN-LAST:event_employeeTableMouseClicked
+
+    private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
+
+        new Utilities().cleanScreen(personal_data_panel);
+    }//GEN-LAST:event_buttonNewActionPerformed
+
+    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
+        employee = new Employee();
+
+        employee.setName(txtNameEmployee.getText());
+        employee.setIdentityDocument(txtIdentityDocumentEmployee.getText());
+        employee.setIndividualRegistration(txtIndividualRegistrationEmployee.getText());
+        employee.setEmail(txtEmailEmployee.getText());
+        employee.setPhone(txtPhoneEmployee.getText());
+        employee.setCellPhone(txtCellPhoneEmployee.getText());
+        employee.setZipCode(txtZipCodeEmployee.getText());
+        employee.setAddress(txtAddressEmployee.getText());
+        employee.setNumber(Integer.parseInt(txtNumberEmployee.getText()));
+        employee.setComplement(txtComplementEmployee.getText());
+        employee.setNeighborhood(txtNeighborhoodEmployee.getText());
+        employee.setCity(txtCityEmployee.getText());
+        employee.setState(comBoxStateEmployee.getSelectedItem().toString());
+        employee.setPassword(txtPasswordEmployee.getPassword().toString());
+        employee.setJobRole(txtJobRoleEmployee.getText());
+        employee.setAccessLevel(comBoxAccessLevelEmployee.getSelectedItem().toString());
+
+        employeeDao = new EmployeeDao();
+        employeeDao.registerEmployee(employee);
+
+        new Utilities().cleanScreen(personal_data_panel);
+    }//GEN-LAST:event_buttonSaveActionPerformed
 
     private void buttonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeActionPerformed
 
@@ -698,13 +725,7 @@ public class JfEmployee extends javax.swing.JFrame {
         employeeDao.changeEmployee(employee);
 
         new Utilities().cleanScreen(personal_data_panel);
-
     }//GEN-LAST:event_buttonChangeActionPerformed
-
-    private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
-
-        new Utilities().cleanScreen(personal_data_panel);
-    }//GEN-LAST:event_buttonNewActionPerformed
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
         employee = new Employee();
@@ -716,37 +737,6 @@ public class JfEmployee extends javax.swing.JFrame {
 
         new Utilities().cleanScreen(personal_data_panel);
     }//GEN-LAST:event_buttonDeleteActionPerformed
-
-    private void txtSearchEmployeeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchEmployeeKeyPressed
-
-        String name = txtSearchEmployee.getText();
-        employeeDao = new EmployeeDao();
-        dataEmployee = employeeDao.searchEmployeeByName(name);
-        dataTable = (DefaultTableModel) employeeTable.getModel();
-        dataTable.setNumRows(0);
-
-        for (Employee employee1 : dataEmployee) {
-            dataTable.addRow(new Object[]{
-                employee1.getId(),
-                employee1.getName(),
-                employee1.getIdentityDocument(),
-                employee1.getIndividualRegistration(),
-                employee1.getEmail(),
-                employee1.getPhone(),
-                employee1.getCellPhone(),
-                employee1.getZipCode(),
-                employee1.getAddress(),
-                employee1.getNumber(),
-                employee1.getComplement(),
-                employee1.getNeighborhood(),
-                employee1.getCity(),
-                employee1.getState(),
-                employee1.getPassword(),
-                employee1.getJobRole(),
-                employee1.getAccessLevel()
-            });
-        }
-    }//GEN-LAST:event_txtSearchEmployeeKeyPressed
 
     /**
      * @param args the command line arguments
@@ -813,7 +803,6 @@ public class JfEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
