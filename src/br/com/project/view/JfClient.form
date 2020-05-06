@@ -27,14 +27,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
-              <Component id="btnNovo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
+              <Component id="buttonNew" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
+              <Component id="buttonSave" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
+              <Component id="buttonChange" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
+              <Component id="buttonDelete" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -55,12 +55,12 @@
               <Component id="customer_consultation_panel" min="-2" pref="247" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonChange" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonDelete" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,7 +77,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="358" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -134,51 +134,47 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtBairroCliente" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="txtNeighborhoodClient" min="-2" pref="114" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtCepCliente" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="txtZipCodeClient" min="-2" pref="114" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtEnderecoCliente" min="-2" pref="338" max="-2" attributes="0"/>
+                                      <Component id="txtAddressClient" min="-2" pref="292" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                      <Component id="txtNumeroCliente" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="comBoxStateClient" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtCpfCliente" min="-2" pref="195" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="txtCidadeCliente" min="-2" pref="232" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="txtCompCliente" min="-2" pref="134" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="comBoxEstadoCliente" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtIndividualRegistrationClient" min="-2" pref="195" max="-2" attributes="0"/>
+                                          <Component id="txtCityClient" min="-2" pref="195" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtComplementClient" min="-2" pref="129" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="txtRgCliente" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtIdentityDocumentClient" min="-2" pref="108" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -187,25 +183,31 @@
                               </Group>
                               <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCodCliente" min="-2" pref="57" max="-2" attributes="0"/>
-                                  <Component id="txtNomeCliente" min="-2" pref="621" max="-2" attributes="0"/>
+                                  <Component id="txtKeyClient" min="-2" pref="57" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtNameClient" min="-2" pref="314" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtPhoneClient" min="-2" pref="148" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtEmailCliente" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Component id="txtEmailClient" min="-2" pref="204" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCelularCliente" min="-2" pref="244" max="-2" attributes="0"/>
+                              <Component id="txtCellPhoneClient" min="-2" pref="198" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtTelefoneCliente" min="-2" pref="148" max="-2" attributes="0"/>
+                              <Component id="txtNumberClient" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="112" max="32767" attributes="0"/>
+                      <EmptySpace pref="71" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -215,54 +217,56 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtKeyClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNameClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPhoneClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtCelularCliente" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="txtCellPhoneClient" alignment="3" max="32767" attributes="0"/>
+                              <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNumberClient" alignment="3" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTelefoneCliente" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="txtEmailCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEmailClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNumeroCliente" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtCepCliente" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtEnderecoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAddressClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comBoxStateClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="txtZipCodeClient" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNeighborhoodClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCityClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comBoxEstadoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCompCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCidadeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtBairroCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtComplementClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtIdentityDocumentClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCpfCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtRgCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtIndividualRegistrationClient" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -338,7 +342,7 @@
                 <Property name="text" type="java.lang.String" value="UF:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="comBoxEstadoCliente">
+            <Component class="javax.swing.JComboBox" name="comBoxStateClient">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="27">
@@ -373,13 +377,13 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comBoxEstadoClienteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comBoxStateClientActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="txtTelefoneCliente">
+            <Component class="javax.swing.JFormattedTextField" name="txtPhoneClient">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="(##) #### - ####" subtype="-1" type="5"/>
@@ -392,15 +396,18 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNumeroCliente">
+            <Component class="javax.swing.JTextField" name="txtNumberClient">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtCompCliente">
+            <Component class="javax.swing.JTextField" name="txtComplementClient">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtComplementClientActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtCidadeCliente">
+            <Component class="javax.swing.JTextField" name="txtCityClient">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtEnderecoCliente">
+            <Component class="javax.swing.JTextField" name="txtAddressClient">
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="txtCpfCliente">
+            <Component class="javax.swing.JFormattedTextField" name="txtIndividualRegistrationClient">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="### - ### - ### - ##" subtype="-1" type="5"/>
@@ -413,11 +420,11 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtRgCliente">
+            <Component class="javax.swing.JTextField" name="txtIdentityDocumentClient">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtBairroCliente">
+            <Component class="javax.swing.JTextField" name="txtNeighborhoodClient">
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="txtCepCliente">
+            <Component class="javax.swing.JFormattedTextField" name="txtZipCodeClient">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="##### - ###" subtype="-1" type="5"/>
@@ -429,14 +436,23 @@
                   <Dimension value="[38, 24]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtZipCodeClientActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtEmailCliente">
+            <Component class="javax.swing.JTextField" name="txtEmailClient">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailClientActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNomeCliente">
+            <Component class="javax.swing.JTextField" name="txtNameClient">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameClientActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtCodCliente">
+            <Component class="javax.swing.JTextField" name="txtKeyClient">
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="txtCelularCliente">
+            <Component class="javax.swing.JFormattedTextField" name="txtCellPhoneClient">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="(##) # #### - ####" subtype="-1" type="5"/>
@@ -470,10 +486,10 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtNomeClientePesquisar" min="-2" pref="322" max="-2" attributes="0"/>
+                              <Component id="txtSearchClient" min="-2" pref="322" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnPesquisarCliente" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="471" max="32767" attributes="0"/>
+                              <Component id="buttonSearchClient" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="255" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -486,8 +502,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel16" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="txtNomeClientePesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnPesquisarCliente" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="txtSearchClient" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonSearchClient" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="175" max="32767" attributes="0"/>
@@ -502,18 +518,18 @@
                 <Property name="text" type="java.lang.String" value="Nome:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNomeClientePesquisar">
+            <Component class="javax.swing.JTextField" name="txtSearchClient">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeClientePesquisarActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNomeClientePesquisarKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSearchClientActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSearchClientKeyPressed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnPesquisarCliente">
+            <Component class="javax.swing.JButton" name="buttonSearchClient">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarClienteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSearchClientActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -523,7 +539,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tabelaCiente">
+                <Component class="javax.swing.JTable" name="clientTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="14" rowCount="0">
@@ -622,8 +638,8 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="tabelaCienteComponentAdded"/>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaCienteMouseClicked"/>
+                    <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="clientTableComponentAdded"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clientTableMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -632,36 +648,36 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnNovo">
+    <Component class="javax.swing.JButton" name="buttonNew">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonNewActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSalvar">
+    <Component class="javax.swing.JButton" name="buttonSave">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnEditar">
+    <Component class="javax.swing.JButton" name="buttonChange">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChangeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnExcluir">
+    <Component class="javax.swing.JButton" name="buttonDelete">
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeleteActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
