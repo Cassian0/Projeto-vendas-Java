@@ -460,7 +460,7 @@ public class JfProvider extends javax.swing.JFrame {
                     .addComponent(buttonSave)
                     .addComponent(buttonDelete)
                     .addComponent(buttonNew))
-                .addGap(29, 29, 29))
+                .addGap(15, 15, 15))
         );
 
         pack();

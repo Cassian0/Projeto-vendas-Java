@@ -1,6 +1,46 @@
 package br.com.project.view;
 
+import br.com.project.dao.EmployeeDao;
+import br.com.project.model.Employee;
+import br.com.project.model.Utilities;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 public class JfEmployee extends javax.swing.JFrame {
+
+    private EmployeeDao employeeDao;
+    private Employee employee;
+    private List<Employee> dataEmployee;
+    private DefaultTableModel dataTable;
+
+    public void listEmployee() {
+        employeeDao = new EmployeeDao();
+        dataEmployee = employeeDao.listEmployee();
+        dataTable = (DefaultTableModel) employeeTable.getModel();
+        dataTable.setNumRows(0);
+
+        for (Employee employee1 : dataEmployee) {
+            dataTable.addRow(new Object[]{
+                employee1.getId(),
+                employee1.getName(),
+                employee1.getIdentityDocument(),
+                employee1.getIndividualRegistration(),
+                employee1.getEmail(),
+                employee1.getPhone(),
+                employee1.getCellPhone(),
+                employee1.getZipCode(),
+                employee1.getAddress(),
+                employee1.getNumber(),
+                employee1.getComplement(),
+                employee1.getNeighborhood(),
+                employee1.getCity(),
+                employee1.getState(),
+                employee1.getPassword(),
+                employee1.getJobRole(),
+                employee1.getAccessLevel()
+            });
+        }
+    }
 
     public JfEmployee() {
         initComponents();
@@ -152,6 +192,11 @@ public class JfEmployee extends javax.swing.JFrame {
 
         txtPasswordEmployee.setMinimumSize(new java.awt.Dimension(14, 24));
         txtPasswordEmployee.setPreferredSize(new java.awt.Dimension(14, 24));
+        txtPasswordEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordEmployeeActionPerformed(evt);
+            }
+        });
 
         try {
             txtIndividualRegistrationEmployee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.### - ##")));
@@ -362,7 +407,18 @@ public class JfEmployee extends javax.swing.JFrame {
 
         jLabel19.setText("Nome:");
 
+        txtSearchEmployee.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchEmployeeKeyPressed(evt);
+            }
+        });
+
         buttonSearchEmployee.setText("Pesquisar");
+        buttonSearchEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchEmployeeActionPerformed(evt);
+            }
+        });
 
         employeeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -372,6 +428,11 @@ public class JfEmployee extends javax.swing.JFrame {
                 "Codigo", "Nome", "RG", "CPF", "E-mail", "Senha", "Cargo", "Nivel de Acesso", "Telefone", "Celular", "CEP", "Endereço", "Nº", "Comp", "Bairro", "Cidade", "UF"
             }
         ));
+        employeeTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employeeTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(employeeTable);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -407,12 +468,32 @@ public class JfEmployee extends javax.swing.JFrame {
         employee_consultation_panel.addTab("Consulta de Funcionários ", jPanel4);
 
         buttonNew.setText("Novo");
+        buttonNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNewActionPerformed(evt);
+            }
+        });
 
         buttonSave.setText("Salvar");
+        buttonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSaveActionPerformed(evt);
+            }
+        });
 
         buttonChange.setText("Editar");
+        buttonChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonChangeActionPerformed(evt);
+            }
+        });
 
         buttonDelete.setText("Excluir");
+        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -505,6 +586,167 @@ public class JfEmployee extends javax.swing.JFrame {
     private void txtPhoneEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneEmployeeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneEmployeeActionPerformed
+
+    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
+        employee = new Employee();
+
+        employee.setName(txtNameEmployee.getText());
+        employee.setIdentityDocument(txtIdentityDocumentEmployee.getText());
+        employee.setIndividualRegistration(txtIndividualRegistrationEmployee.getText());
+        employee.setEmail(txtEmailEmployee.getText());
+        employee.setPhone(txtPhoneEmployee.getText());
+        employee.setCellPhone(txtCellPhoneEmployee.getText());
+        employee.setZipCode(txtZipCodeEmployee.getText());
+        employee.setAddress(txtAddressEmployee.getText());
+        employee.setNumber(Integer.parseInt(txtNumberEmployee.getText()));
+        employee.setComplement(txtComplementEmployee.getText());
+        employee.setNeighborhood(txtNeighborhoodEmployee.getText());
+        employee.setCity(txtCityEmployee.getText());
+        employee.setState(comBoxStateEmployee.getSelectedItem().toString());
+        employee.setPassword(txtPasswordEmployee.getPassword().toString());
+        employee.setJobRole(txtJobRoleEmployee.getText());
+        employee.setAccessLevel(comBoxAccessLevelEmployee.getSelectedItem().toString());
+
+        employeeDao = new EmployeeDao();
+        employeeDao.registerEmployee(employee);
+
+        new Utilities().cleanScreen(personal_data_panel);
+    }//GEN-LAST:event_buttonSaveActionPerformed
+
+    private void txtPasswordEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordEmployeeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordEmployeeActionPerformed
+
+    private void buttonSearchEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchEmployeeActionPerformed
+        String name = txtSearchEmployee.getText();
+        employeeDao = new EmployeeDao();
+        dataEmployee = employeeDao.searchEmployeeByName(name);
+        dataTable = (DefaultTableModel) employeeTable.getModel();
+        dataTable.setNumRows(0);
+
+        for (Employee employee1 : dataEmployee) {
+            dataTable.addRow(new Object[]{
+                employee1.getId(),
+                employee1.getName(),
+                employee1.getIdentityDocument(),
+                employee1.getIndividualRegistration(),
+                employee1.getEmail(),
+                employee1.getPhone(),
+                employee1.getCellPhone(),
+                employee1.getZipCode(),
+                employee1.getAddress(),
+                employee1.getNumber(),
+                employee1.getComplement(),
+                employee1.getNeighborhood(),
+                employee1.getCity(),
+                employee1.getState(),
+                employee1.getPassword(),
+                employee1.getJobRole(),
+                employee1.getAccessLevel()
+            });
+        }
+    }//GEN-LAST:event_buttonSearchEmployeeActionPerformed
+
+    private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
+
+        employee_consultation_panel.setSelectedIndex(0);
+
+        txtKeyEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 0).toString());
+        txtNameEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 1).toString());
+        txtIdentityDocumentEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 2).toString());
+        txtIndividualRegistrationEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 3).toString());
+        txtEmailEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 4).toString());
+        txtPhoneEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 5).toString());
+        txtCellPhoneEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 6).toString());
+        txtZipCodeEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 7).toString());
+        txtAddressEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 8).toString());
+        txtNumberEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 9).toString());
+        txtComplementEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 10).toString());
+        txtNeighborhoodEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 11).toString());
+        txtCityEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 12).toString());
+        comBoxStateEmployee.setSelectedItem(employeeTable.getValueAt(employeeTable.getSelectedRow(), 13).toString());
+        txtPasswordEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 14).toString());
+        txtJobRoleEmployee.setText(employeeTable.getValueAt(employeeTable.getSelectedRow(), 15).toString());
+        comBoxAccessLevelEmployee.setSelectedItem(employeeTable.getValueAt(employeeTable.getSelectedRow(), 16).toString());
+
+    }//GEN-LAST:event_employeeTableMouseClicked
+
+    private void buttonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeActionPerformed
+
+        employee = new Employee();
+
+        employee.setName(txtNameEmployee.getText());
+        employee.setIdentityDocument(txtIdentityDocumentEmployee.getText());
+        employee.setIndividualRegistration(txtIndividualRegistrationEmployee.getText());
+        employee.setEmail(txtEmailEmployee.getText());
+        employee.setPhone(txtPhoneEmployee.getText());
+        employee.setCellPhone(txtCellPhoneEmployee.getText());
+        employee.setZipCode(txtZipCodeEmployee.getText());
+        employee.setAddress(txtAddressEmployee.getText());
+        employee.setNumber(Integer.parseInt(txtNumberEmployee.getText()));
+        employee.setComplement(txtComplementEmployee.getText());
+        employee.setNeighborhood(txtNeighborhoodEmployee.getText());
+        employee.setCity(txtCityEmployee.getText());
+        employee.setState(comBoxStateEmployee.getSelectedItem().toString());
+        employee.setPassword(txtPasswordEmployee.getPassword().toString());
+        employee.setJobRole(txtJobRoleEmployee.getText());
+        employee.setAccessLevel(comBoxAccessLevelEmployee.getSelectedItem().toString());
+
+        employee.setId(Integer.parseInt(txtKeyEmployee.getText()));
+
+        employeeDao = new EmployeeDao();
+        employeeDao.changeEmployee(employee);
+
+        new Utilities().cleanScreen(personal_data_panel);
+
+    }//GEN-LAST:event_buttonChangeActionPerformed
+
+    private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
+
+        new Utilities().cleanScreen(personal_data_panel);
+    }//GEN-LAST:event_buttonNewActionPerformed
+
+    private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
+        employee = new Employee();
+
+        employee.setId(Integer.parseInt(txtKeyEmployee.getText()));
+
+        employeeDao = new EmployeeDao();
+        employeeDao.deleteEmployee(employee);
+
+        new Utilities().cleanScreen(personal_data_panel);
+    }//GEN-LAST:event_buttonDeleteActionPerformed
+
+    private void txtSearchEmployeeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchEmployeeKeyPressed
+
+        String name = txtSearchEmployee.getText();
+        employeeDao = new EmployeeDao();
+        dataEmployee = employeeDao.searchEmployeeByName(name);
+        dataTable = (DefaultTableModel) employeeTable.getModel();
+        dataTable.setNumRows(0);
+
+        for (Employee employee1 : dataEmployee) {
+            dataTable.addRow(new Object[]{
+                employee1.getId(),
+                employee1.getName(),
+                employee1.getIdentityDocument(),
+                employee1.getIndividualRegistration(),
+                employee1.getEmail(),
+                employee1.getPhone(),
+                employee1.getCellPhone(),
+                employee1.getZipCode(),
+                employee1.getAddress(),
+                employee1.getNumber(),
+                employee1.getComplement(),
+                employee1.getNeighborhood(),
+                employee1.getCity(),
+                employee1.getState(),
+                employee1.getPassword(),
+                employee1.getJobRole(),
+                employee1.getAccessLevel()
+            });
+        }
+    }//GEN-LAST:event_txtSearchEmployeeKeyPressed
 
     /**
      * @param args the command line arguments
