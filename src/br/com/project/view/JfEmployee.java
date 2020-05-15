@@ -109,7 +109,8 @@ public class JfEmployee extends javax.swing.JFrame {
         buttonChange = new javax.swing.JButton();
         buttonDelete = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Funcionário");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -537,6 +538,7 @@ public class JfEmployee extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -783,7 +785,7 @@ public class JfEmployee extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comBoxAccessLevelEmployee;
     private javax.swing.JComboBox<String> comBoxStateEmployee;
     private javax.swing.JTable employeeTable;
-    private javax.swing.JTabbedPane employee_consultation_panel;
+    public javax.swing.JTabbedPane employee_consultation_panel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

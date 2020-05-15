@@ -93,7 +93,8 @@ public class JfProvider extends javax.swing.JFrame {
         buttonDelete = new javax.swing.JButton();
         buttonNew = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Fornecedores");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -692,7 +693,7 @@ public class JfProvider extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel personal_data_panel;
     private javax.swing.JTable providerTable;
-    private javax.swing.JTabbedPane provider_consultation_panel;
+    public javax.swing.JTabbedPane provider_consultation_panel;
     private javax.swing.JTextField txtAddressProvider;
     private javax.swing.JFormattedTextField txtCellPhoneProvider;
     private javax.swing.JTextField txtCityProvider;

@@ -2,12 +2,15 @@ package br.com.project.dao;
 
 import br.com.project.jdbc.ConnectionFactory;
 import br.com.project.model.Employee;
+import br.com.project.view.JfLogin;
+import br.com.project.view.JfMenu;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class EmployeeDao {
 
@@ -188,6 +191,30 @@ public class EmployeeDao {
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
             return null;
+        }
+    }
+
+    public void logIn(String email, String senha) {
+        try {
+
+            String query = "SELECT * FROM employee WHERE email = ? and password = ?";
+
+            prepared = connection.prepareStatement(query);
+            prepared.setString(0, email);
+            prepared.setString(1, senha);
+
+            result = prepared.executeQuery();
+            if (result.next()) {
+                JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
+                JfMenu jfMenu = new JfMenu();
+                jfMenu.setVisible(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados incorretos");
+                new JfLogin().setVisible(true);
+            }
+        } catch (Exception err) {
+            System.out.println("Erro: " + err);
         }
     }
 }
