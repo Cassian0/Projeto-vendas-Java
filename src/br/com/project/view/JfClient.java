@@ -102,7 +102,7 @@ public class JfClient extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -212,6 +212,8 @@ public class JfClient extends javax.swing.JFrame {
                 txtNameClientActionPerformed(evt);
             }
         });
+
+        txtKeyClient.setEditable(false);
 
         try {
             txtCellPhoneClient.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # #### - ####")));
@@ -678,7 +680,7 @@ public class JfClient extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ProviderDao {
 
@@ -42,7 +43,7 @@ public class ProviderDao {
             prepared.execute();
             prepared.close();
 
-            System.out.println("Cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
 
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
@@ -111,7 +112,7 @@ public class ProviderDao {
             prepared.execute();
             prepared.close();
 
-            System.out.println("Fornecedor alterado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Fornecedor Alterado com Sucesso!");
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
         }
@@ -128,7 +129,7 @@ public class ProviderDao {
             prepared.execute();
             prepared.close();
 
-            System.out.println("Fornecedor excluido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Fornecedor Excluido com Sucesso!");
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
         }

@@ -117,7 +117,7 @@ public class JfEmployee extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -179,6 +179,8 @@ public class JfEmployee extends javax.swing.JFrame {
                 txtNameEmployeeActionPerformed(evt);
             }
         });
+
+        txtKeyEmployee.setEditable(false);
 
         txtEmailEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -435,7 +437,7 @@ public class JfEmployee extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Nome", "RG", "CPF", "E-mail", "Senha", "Cargo", "Nivel de Acesso", "Telefone", "Celular", "CEP", "Endereço", "Nº", "Comp", "Bairro", "Cidade", "UF"
+                "Codigo", "Nome", "RG", "CPF", "E-mail", "Telefone", "Celular", "CEP", "Endereço", "Numero", "Complemento", "Bairro", "Cidade", "UF", "Senha", "Cargo", "Nivel de Acesso"
             }
         ));
         employeeTable.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -194,14 +194,14 @@ public class EmployeeDao {
         }
     }
 
-    public void logIn(String email, String senha) {
+    public void logIn(String email, String password) {
         try {
 
-            String query = "SELECT * FROM employee WHERE email = ? and password = ?";
+            String query = "SELECT * FROM employees WHERE email = ? and password = ?";
 
             prepared = connection.prepareStatement(query);
-            prepared.setString(0, email);
-            prepared.setString(1, senha);
+            prepared.setString(1, email);
+            prepared.setString(2, password);
 
             result = prepared.executeQuery();
             if (result.next()) {

@@ -101,7 +101,7 @@ public class JfProvider extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 255));
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 28)); // NOI18N
@@ -150,6 +150,8 @@ public class JfProvider extends javax.swing.JFrame {
         jLabel26.setText("Complemento:");
 
         jLabel27.setText("UF:");
+
+        txtKeyProvider.setEditable(false);
 
         txtNameProvider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
