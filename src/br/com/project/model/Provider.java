@@ -14,7 +14,8 @@ public class Provider extends Client implements Serializable {
         this.companyIdentificationNumber = companyIdentificationNumber;
     }
 
+    @Override
     public String toString() {
-        return this.getCompanyIdentificationNumber();
+        return this.getName();
     }
 }

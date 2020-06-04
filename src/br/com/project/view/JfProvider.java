@@ -516,7 +516,7 @@ public class JfProvider extends javax.swing.JFrame {
 //            BOTAO PESQUISAR
         String name = txtSearchProvider.getText();
         providerDao = new ProviderDao();
-        dataProvider = providerDao.searchProviderByName(name);
+        provider = providerDao.searchProviderByName(name);
         DefaultTableModel dataTable = (DefaultTableModel) providerTable.getModel();
         dataTable.setNumRows(0);
 
@@ -609,7 +609,7 @@ public class JfProvider extends javax.swing.JFrame {
 
         String name = txtSearchProvider.getText();
         providerDao = new ProviderDao();
-        dataProvider = providerDao.searchProviderByName(name);
+        provider = providerDao.searchProviderByName(name);
         DefaultTableModel dataTable = (DefaultTableModel) providerTable.getModel();
         dataTable.setNumRows(0);
 

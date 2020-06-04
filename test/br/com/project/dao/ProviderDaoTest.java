@@ -65,7 +65,7 @@ public class ProviderDaoTest {
     public void testSearchProviderByName() {
         System.out.println("Pesquisar fornecedor por nome:");
         String name = "ma";
-        dataProvider = providerDao.searchProviderByName(name);
+        provider = providerDao.searchProviderByName(name);
         for (Provider provider1 : dataProvider) {
             System.out.println("ID: " + provider1.getId());
             System.out.println("Nome: " + provider1.getName());
