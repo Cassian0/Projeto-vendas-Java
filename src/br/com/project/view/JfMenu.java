@@ -87,11 +87,26 @@ public class JfMenu extends javax.swing.JFrame {
 
         menuProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/produtos.png"))); // NOI18N
         menuProduct.setText("Produtos");
+        menuProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProductActionPerformed(evt);
+            }
+        });
 
         menuStockControl.setText("Controle de Estoque");
+        menuStockControl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuStockControlActionPerformed(evt);
+            }
+        });
         menuProduct.add(menuStockControl);
 
         menuProductQuery.setText("Consulta de Produtos");
+        menuProductQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProductQueryActionPerformed(evt);
+            }
+        });
         menuProduct.add(menuProductQuery);
 
         jMenuBar1.add(menuProduct);
@@ -218,6 +233,25 @@ public class JfMenu extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_menuExitMouseClicked
+
+    private void menuProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProductActionPerformed
+    }//GEN-LAST:event_menuProductActionPerformed
+
+    private void menuProductQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProductQueryActionPerformed
+//      ABRIR TELA DE PRODUTOS
+        JfProducts jfProducts = new JfProducts();
+        jfProducts.product_consultation_panel.setSelectedIndex(1);
+        jfProducts.setVisible(true);
+
+    }//GEN-LAST:event_menuProductQueryActionPerformed
+
+    private void menuStockControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuStockControlActionPerformed
+//      ABRIR TELA DE PRODUTOS
+        JfProducts jfProducts = new JfProducts();
+        jfProducts.product_consultation_panel.setSelectedIndex(1);
+        jfProducts.setVisible(true);
+
+    }//GEN-LAST:event_menuStockControlActionPerformed
 
     /**
      * @param args the command line arguments
