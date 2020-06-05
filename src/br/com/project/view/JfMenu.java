@@ -115,6 +115,11 @@ public class JfMenu extends javax.swing.JFrame {
         menuSale.setText("Vendas");
 
         menuOpenPdv.setText("Abrir PDV");
+        menuOpenPdv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuOpenPdvActionPerformed(evt);
+            }
+        });
         menuSale.add(menuOpenPdv);
 
         menuSalesHistory.setText("Histórico de Vendas");
@@ -184,12 +189,12 @@ public class JfMenu extends javax.swing.JFrame {
             JfLogin jfLogin = new JfLogin();
             int option;
             option = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja trocar de usuário?");
-
+            
             if (option == 0) {
                 jfLogin.setVisible(true);
                 this.dispose();
             }
-
+            
         } catch (Exception err) {
             JOptionPane.showMessageDialog(null, "Erro: " + err);
         }
@@ -228,7 +233,7 @@ public class JfMenu extends javax.swing.JFrame {
     private void menuExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuExitMouseClicked
         int option;
         option = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");
-
+        
         if (option == 0) {
             System.exit(0);
         }
@@ -252,6 +257,12 @@ public class JfMenu extends javax.swing.JFrame {
         jfProducts.setVisible(true);
 
     }//GEN-LAST:event_menuStockControlActionPerformed
+
+    private void menuOpenPdvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOpenPdvActionPerformed
+//      ABRIR TELA DE VENDAS
+        JfSalesScreen jfSales = new JfSalesScreen();
+        jfSales.setVisible(true);
+    }//GEN-LAST:event_menuOpenPdvActionPerformed
 
     /**
      * @param args the command line arguments

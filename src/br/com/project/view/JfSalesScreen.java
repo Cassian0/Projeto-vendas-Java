@@ -186,7 +186,6 @@ public class JfSalesScreen extends javax.swing.JFrame {
 
         jLabel3.setText("Nome:");
 
-        txtNameClient.setPreferredSize(new java.awt.Dimension(14, 24));
         txtNameClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameClientActionPerformed(evt);
@@ -301,6 +300,11 @@ public class JfSalesScreen extends javax.swing.JFrame {
         );
 
         buttonPayment.setText("Pagamento");
+        buttonPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPaymentActionPerformed(evt);
+            }
+        });
 
         buttonCancel.setText("Cancelar Venda");
 
@@ -368,6 +372,12 @@ public class JfSalesScreen extends javax.swing.JFrame {
         String dateFormat = dateBr.format(date);
         txtDate.setText(dateFormat);
     }//GEN-LAST:event_formWindowActivated
+
+    private void buttonPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPaymentActionPerformed
+//        ABRIR TELA DE PAGAMENTOS
+        JfPayment jfPayment = new JfPayment();
+        jfPayment.setVisible(true);
+    }//GEN-LAST:event_buttonPaymentActionPerformed
 
     /**
      * @param args the command line arguments
