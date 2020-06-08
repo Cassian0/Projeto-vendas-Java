@@ -2,11 +2,8 @@ package br.com.project.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
-/**
- *
- * @author Cassiano
- */
 public class ConnectionFactory {
 
     public Connection getConnection() {
@@ -15,7 +12,7 @@ public class ConnectionFactory {
 
             return DriverManager.getConnection("jdbc:mysql://localhost:3306/salesdb", "root", "");
 
-        } catch (Exception erro) {
+        } catch (SQLException erro) {
             throw new RuntimeException(erro);
 
         }

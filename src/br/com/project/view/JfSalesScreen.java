@@ -5,8 +5,13 @@
  */
 package br.com.project.view;
 
+import br.com.project.dao.ClientDao;
+import br.com.project.dao.ProductsDao;
+import br.com.project.model.Client;
+import br.com.project.model.Products;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,6 +49,8 @@ public class JfSalesScreen extends javax.swing.JFrame {
         buttonSearchProduct = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtProductQuantity = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtStockQuantity = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         buttonSearchClient = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -97,6 +104,11 @@ public class JfSalesScreen extends javax.swing.JFrame {
         buttonRemoveItem.setText("Remover Item");
 
         buttonAddItem.setText("Adicionar Item");
+        buttonAddItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddItemActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Código:");
 
@@ -104,9 +116,16 @@ public class JfSalesScreen extends javax.swing.JFrame {
 
         jLabel7.setText("Preço:");
 
+        txtDescriptionProduct.setEditable(false);
+
         txtPriceProduct.setEditable(false);
 
         buttonSearchProduct.setText("Pesquisar");
+        buttonSearchProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchProductActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Quantidade:");
 
@@ -115,6 +134,10 @@ public class JfSalesScreen extends javax.swing.JFrame {
                 txtProductQuantityActionPerformed(evt);
             }
         });
+
+        jLabel10.setText("Quantidade em Estoque:");
+
+        txtStockQuantity.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,14 +167,17 @@ public class JfSalesScreen extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonSearchProduct, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtIdProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDescriptionProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(txtIdProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDescriptionProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtStockQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSearchProduct)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -164,13 +190,17 @@ public class JfSalesScreen extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(txtDescriptionProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonSearchProduct)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonSearchProduct)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(txtStockQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txtProductQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtProductQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonRemoveItem)
@@ -181,6 +211,11 @@ public class JfSalesScreen extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Cliente"));
 
         buttonSearchClient.setText("Pesquisar");
+        buttonSearchClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchClientActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("CPF:");
 
@@ -278,6 +313,8 @@ public class JfSalesScreen extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setText("TOTAL:");
 
+        txtTotalSale.setEditable(false);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -315,11 +352,10 @@ public class JfSalesScreen extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(buttonPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -340,8 +376,8 @@ public class JfSalesScreen extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
@@ -378,6 +414,48 @@ public class JfSalesScreen extends javax.swing.JFrame {
         JfPayment jfPayment = new JfPayment();
         jfPayment.setVisible(true);
     }//GEN-LAST:event_buttonPaymentActionPerformed
+
+    private void buttonSearchClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchClientActionPerformed
+//           BUDSCAR CLIENTE
+        Client client = new Client();
+        ClientDao clientDao = new ClientDao();
+
+        client = clientDao.searchClientByIndividualRegistration(txtCpfClient.getText());
+        txtNameClient.setText(client.getName());
+    }//GEN-LAST:event_buttonSearchClientActionPerformed
+
+    private void buttonSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchProductActionPerformed
+//        BUSCAR PRODUTO
+        Products products = new Products();
+        ProductsDao productsDao = new ProductsDao();
+        products = productsDao.searchProductsByID(Integer.parseInt(txtIdProduct.getText()));
+
+        txtDescriptionProduct.setText(products.getDescription());
+        txtPriceProduct.setText(String.valueOf(products.getPrice()));
+        txtStockQuantity.setText(String.valueOf(products.getStockQuantity()));
+    }//GEN-LAST:event_buttonSearchProductActionPerformed
+
+    private void buttonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddItemActionPerformed
+//      ADICIONAR ITEM
+        double total = 0;
+        double subTotal;
+        int quantity = Integer.parseInt(txtProductQuantity.getText());
+        double price = Double.parseDouble(txtPriceProduct.getText());
+
+        subTotal = quantity * price;
+
+        total += subTotal;
+        txtTotalSale.setText(String.valueOf(total));
+
+        DefaultTableModel shoppingCar = (DefaultTableModel) shoppingCartTable.getModel();
+        shoppingCar.addRow(new Object[]{
+            txtIdProduct.getText(),
+            txtDescriptionProduct.getText(),
+            txtProductQuantity.getText(),
+            txtPriceProduct.getText(),
+            subTotal
+        });
+    }//GEN-LAST:event_buttonAddItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -422,6 +500,7 @@ public class JfSalesScreen extends javax.swing.JFrame {
     private javax.swing.JButton buttonSearchClient;
     private javax.swing.JButton buttonSearchProduct;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -444,6 +523,7 @@ public class JfSalesScreen extends javax.swing.JFrame {
     private javax.swing.JTextField txtNameClient;
     private javax.swing.JTextField txtPriceProduct;
     private javax.swing.JTextField txtProductQuantity;
+    private javax.swing.JTextField txtStockQuantity;
     private javax.swing.JTextField txtTotalSale;
     // End of variables declaration//GEN-END:variables
 }

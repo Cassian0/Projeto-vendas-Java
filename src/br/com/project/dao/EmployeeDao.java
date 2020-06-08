@@ -52,7 +52,7 @@ public class EmployeeDao {
             prepared.execute();
             prepared.close();
 
-            System.out.println("Cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
         }
@@ -130,7 +130,7 @@ public class EmployeeDao {
             prepared.execute();
             prepared.close();
 
-            System.out.println("Cliente alterado com sucesso");
+            JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso");
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
         }

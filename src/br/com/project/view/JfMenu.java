@@ -1,5 +1,6 @@
 package br.com.project.view;
 
+import br.com.project.jdbc.TestConnection;
 import javax.swing.JOptionPane;
 
 public class JfMenu extends javax.swing.JFrame {
@@ -189,12 +190,12 @@ public class JfMenu extends javax.swing.JFrame {
             JfLogin jfLogin = new JfLogin();
             int option;
             option = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja trocar de usuário?");
-            
+
             if (option == 0) {
                 jfLogin.setVisible(true);
                 this.dispose();
             }
-            
+
         } catch (Exception err) {
             JOptionPane.showMessageDialog(null, "Erro: " + err);
         }
@@ -202,7 +203,9 @@ public class JfMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuChangeUserActionPerformed
 
     private void menuCheckConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCheckConnectionActionPerformed
-        // TODO add your handling code here:
+//        TESTAR CONEXÃO
+        TestConnection testConnection = new TestConnection();
+        testConnection.testConnection();
     }//GEN-LAST:event_menuCheckConnectionActionPerformed
 
     private void menuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExitActionPerformed
@@ -233,7 +236,7 @@ public class JfMenu extends javax.swing.JFrame {
     private void menuExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuExitMouseClicked
         int option;
         option = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");
-        
+
         if (option == 0) {
             System.exit(0);
         }

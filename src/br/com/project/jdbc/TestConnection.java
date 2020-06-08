@@ -4,17 +4,16 @@ import javax.swing.JOptionPane;
 
 public class TestConnection {
 
-    public static void main(String[] args) {
-
+    public void testConnection() {
         try {
 
             new ConnectionFactory().getConnection();
-            System.out.println("Conectado com sucesso");
+            JOptionPane.showMessageDialog(null, "Conectado com sucesso");
 
         } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro na conexão");
             System.out.println("Erro:" + erro);
         }
-
     }
 
 }

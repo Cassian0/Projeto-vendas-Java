@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 //METODO CONSTRUTOR
 public class ClientDao {
@@ -54,7 +55,7 @@ public class ClientDao {
             prepared.execute();
             prepared.close();
 
-            System.out.println("Cadastrado com sucesso");
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
 
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
@@ -131,7 +132,7 @@ public class ClientDao {
             prepared.execute();
             prepared.close();
 
-            System.out.println("Cliente alterado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
 
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
@@ -153,7 +154,7 @@ public class ClientDao {
             prepared.execute();
             prepared.close();
 
-            System.out.println("Excluido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
         }
@@ -196,6 +197,42 @@ public class ClientDao {
             return dataClient;
 
         } catch (SQLException err) {
+            System.out.println("Erro: " + err);
+            return null;
+        }
+    }
+
+//    BUSCAR CLIENTE POR CPF
+    public Client searchClientByIndividualRegistration(String individualRegistration) {
+
+        try {
+            String query = "SELECT * FROM clients WHERE individualRegistration = ?";
+
+            prepared = connection.prepareStatement(query);
+            prepared.setString(1, individualRegistration);
+
+            result = prepared.executeQuery();
+            result.next();
+            Client client = new Client();
+            client.setId(result.getInt("id"));
+            client.setName(result.getString("name"));
+            client.setIdentityDocument(result.getString("identityDocument"));
+            client.setIndividualRegistration(result.getString("individualRegistration"));
+            client.setEmail(result.getString("email"));
+            client.setPhone(result.getString("phone"));
+            client.setCellPhone(result.getString("cellPhone"));
+            client.setZipCode(result.getString("zipCode"));
+            client.setAddress(result.getString("address"));
+            client.setNumber(result.getInt("number"));
+            client.setComplement(result.getString("complement"));
+            client.setNeighborhood(result.getString("neighborhood"));
+            client.setCity(result.getString("city"));
+            client.setState(result.getString("state"));
+
+            return client;
+
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Cliente não foi encontrado!");
             System.out.println("Erro: " + err);
             return null;
         }

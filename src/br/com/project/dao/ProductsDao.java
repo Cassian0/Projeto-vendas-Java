@@ -108,6 +108,7 @@ public class ProductsDao {
             prepared.close();
 
             JOptionPane.showMessageDialog(null, "Produto Excluido com Sucesso!");
+            
         } catch (Exception err) {
             System.out.println("Erro: " + err);
         }
@@ -214,7 +215,7 @@ public class ProductsDao {
 //    METODO QUE RETORNA O ESTOQUE
     public int returnCurrentyIventory(int id) {
         try {
-            int stockQuantity = 0;
+            int stockQuantity;
             String query = "SELECT stockQuantity FROM products WHERE id = ?";
 
             prepared = connection.prepareStatement(query);
