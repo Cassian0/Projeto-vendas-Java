@@ -5,7 +5,6 @@ import br.com.project.dao.ProductsDao;
 import br.com.project.model.Client;
 import br.com.project.model.Products;
 import com.sun.glass.events.KeyEvent;
-import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -21,7 +20,6 @@ public class JfSalesScreen extends javax.swing.JFrame {
 
     public JfSalesScreen() {
         initComponents();
-        this.getContentPane().setBackground(Color.WHITE);
     }
 
     /**
@@ -462,22 +460,33 @@ public class JfSalesScreen extends javax.swing.JFrame {
 
     private void buttonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddItemActionPerformed
 //      ADICIONAR ITEM
+        int stock = Integer.parseInt(txtStockQuantity.getText());
+
         quantity = Integer.parseInt(txtProductQuantity.getText());
         price = Double.parseDouble(txtPriceProduct.getText());
 
         subTotal = quantity * price;
 
         total += subTotal;
-        txtTotalSale.setText(String.valueOf(total));
 
-        shoppingCar = (DefaultTableModel) shoppingCartTable.getModel();
-        shoppingCar.addRow(new Object[]{
-            txtIdProduct.getText(),
-            txtDescriptionProduct.getText(),
-            txtProductQuantity.getText(),
-            txtPriceProduct.getText(),
-            subTotal
-        });
+        txtTotalSale.setText(String.valueOf(total));
+        
+        stock -= quantity;
+        
+        if (stock < quantity) {
+            JOptionPane.showMessageDialog(null, "Quantidade escolhida maior do que a em estoque");
+        } else {
+
+            shoppingCar = (DefaultTableModel) shoppingCartTable.getModel();
+            shoppingCar.addRow(new Object[]{
+                txtIdProduct.getText(),
+                txtDescriptionProduct.getText(),
+                txtProductQuantity.getText(),
+                txtPriceProduct.getText(),
+                subTotal
+            });
+        }
+        txtStockQuantity.setText(String.valueOf(stock));
     }//GEN-LAST:event_buttonAddItemActionPerformed
 
     private void txtCpfClientKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfClientKeyPressed
@@ -521,12 +530,12 @@ public class JfSalesScreen extends javax.swing.JFrame {
     private void buttonRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveItemActionPerformed
 //        REMOVER ITEM
         double priceProduct;
-        
+
         priceProduct = Double.parseDouble(shoppingCartTable.getValueAt(shoppingCartTable.getSelectedRow(), 4).toString());
-        
+
         total -= priceProduct;
         shoppingCar.removeRow(shoppingCartTable.getSelectedRow());
-        
+
         txtTotalSale.setText(String.valueOf(total));
     }//GEN-LAST:event_buttonRemoveItemActionPerformed
 

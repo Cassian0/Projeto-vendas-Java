@@ -6,6 +6,7 @@
 package br.com.project.view;
 
 import br.com.project.dao.EmployeeDao;
+import com.sun.glass.events.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -60,6 +61,17 @@ public class JfLogin extends javax.swing.JFrame {
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
+            }
+        });
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
             }
         });
 
@@ -179,6 +191,35 @@ public class JfLogin extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_buttonExitActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+//        ENTAR NO SISTEMA UTILIZANDO O ENTER
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                String email, password;
+
+                email = txtEmail.getText();
+                password = txtPassword.getText();
+
+                if ("".equals(email) || "".equals(password)) {
+                    JOptionPane.showMessageDialog(null, "Preencha os campos");
+                } else {
+                    EmployeeDao employeeDao = new EmployeeDao();
+                    employeeDao.logIn(email, password);
+
+//               FECHAR TELA DE LOGIN
+                    this.dispose();
+                }
+
+            } catch (Exception err) {
+                JOptionPane.showMessageDialog(null, "Erro: " + err);
+            }
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
      * @param args the command line arguments

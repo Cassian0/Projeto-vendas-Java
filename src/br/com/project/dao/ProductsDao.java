@@ -24,7 +24,7 @@ public class ProductsDao {
     public void registerProducts(Products products) {
 
         try {
-            String query = "INSERT INTO products (description, price, stockQunatity, idProviders) "
+            String query = "INSERT INTO products (description, price, stockQuantity, idProviders) "
                     + "VALUES (?,?,?,?)";
             prepared = connection.prepareStatement(query);
             prepared.setString(1, products.getDescription());
@@ -58,7 +58,7 @@ public class ProductsDao {
                 products.setPrice(result.getDouble("price"));
                 products.setStockQuantity(result.getInt("stockQuantity"));
                 Provider provider = new Provider();
-                provider.setName(result.getString("name"));
+                provider.setName(result.getString("providers.name"));
 
                 products.setProvider(provider);
 
@@ -120,7 +120,7 @@ public class ProductsDao {
 
         try {
             String query = "SELECT * FROM products INNER JOIN providers "
-                    + "ON products.idProvider = provider.id WHERE name LIKE ?";
+                    + "ON products.idProviders = providers.id WHERE name LIKE ?";
 
             prepared = connection.prepareStatement(query);
             prepared.setString(1, "%" + name + "%");
@@ -132,7 +132,7 @@ public class ProductsDao {
                 products.setPrice(result.getDouble("price"));
                 products.setStockQuantity(result.getInt("stockQuantity"));
                 Provider provider = new Provider();
-                provider.setName(result.getString("name"));
+                provider.setName(result.getString("providers.name"));
 
                 products.setProvider(provider);
                 dataProducts.add(products);
