@@ -460,33 +460,38 @@ public class JfSalesScreen extends javax.swing.JFrame {
 
     private void buttonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddItemActionPerformed
 //      ADICIONAR ITEM
-        int stock = Integer.parseInt(txtStockQuantity.getText());
+        if (txtProductQuantity.getText().equals("") || txtPriceProduct.getText().equals("")) {
 
-        quantity = Integer.parseInt(txtProductQuantity.getText());
-        price = Double.parseDouble(txtPriceProduct.getText());
+            JOptionPane.showMessageDialog(null, "Favor preencher todos os campos");
 
-        subTotal = quantity * price;
-
-        total += subTotal;
-
-        txtTotalSale.setText(String.valueOf(total));
-        
-        stock -= quantity;
-        
-        if (stock < quantity) {
-            JOptionPane.showMessageDialog(null, "Quantidade escolhida maior do que a em estoque");
         } else {
+            int stock = Integer.parseInt(txtStockQuantity.getText());
+            quantity = Integer.parseInt(txtProductQuantity.getText());
+            price = Double.parseDouble(txtPriceProduct.getText());
 
-            shoppingCar = (DefaultTableModel) shoppingCartTable.getModel();
-            shoppingCar.addRow(new Object[]{
-                txtIdProduct.getText(),
-                txtDescriptionProduct.getText(),
-                txtProductQuantity.getText(),
-                txtPriceProduct.getText(),
-                subTotal
-            });
+            subTotal = quantity * price;
+
+            total += subTotal;
+
+            txtTotalSale.setText(String.valueOf(total));
+            System.out.println(txtProductQuantity.getText());
+
+            if (stock < quantity) {
+                JOptionPane.showMessageDialog(null, "Quantidade escolhida maior do que a em estoque");
+            } else {
+                stock -= quantity;
+
+                shoppingCar = (DefaultTableModel) shoppingCartTable.getModel();
+                shoppingCar.addRow(new Object[]{
+                    txtIdProduct.getText(),
+                    txtDescriptionProduct.getText(),
+                    txtProductQuantity.getText(),
+                    txtPriceProduct.getText(),
+                    subTotal
+                });
+                txtStockQuantity.setText(String.valueOf(stock));
+            }
         }
-        txtStockQuantity.setText(String.valueOf(stock));
     }//GEN-LAST:event_buttonAddItemActionPerformed
 
     private void txtCpfClientKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfClientKeyPressed
@@ -529,14 +534,24 @@ public class JfSalesScreen extends javax.swing.JFrame {
 
     private void buttonRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveItemActionPerformed
 //        REMOVER ITEM
-        double priceProduct;
+        if (shoppingCartTable.getSelectedRow() != -1) {
 
-        priceProduct = Double.parseDouble(shoppingCartTable.getValueAt(shoppingCartTable.getSelectedRow(), 4).toString());
+            double priceProduct;
+            int quantity;
+            int stockQuantity = Integer.parseInt(txtStockQuantity.getText());
 
-        total -= priceProduct;
-        shoppingCar.removeRow(shoppingCartTable.getSelectedRow());
+            priceProduct = Double.parseDouble(shoppingCartTable.getValueAt(shoppingCartTable.getSelectedRow(), 4).toString());
+            quantity = Integer.parseInt(shoppingCartTable.getValueAt(shoppingCartTable.getSelectedRow(), 2).toString());
 
-        txtTotalSale.setText(String.valueOf(total));
+            total -= priceProduct;
+            stockQuantity += quantity;
+            shoppingCar.removeRow(shoppingCartTable.getSelectedRow());
+
+            txtTotalSale.setText(String.valueOf(total));
+            txtStockQuantity.setText(String.valueOf(stockQuantity));
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um item a ser excluido!");
+        }
     }//GEN-LAST:event_buttonRemoveItemActionPerformed
 
     /**
@@ -553,16 +568,24 @@ public class JfSalesScreen extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JfSalesScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JfSalesScreen.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JfSalesScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JfSalesScreen.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JfSalesScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JfSalesScreen.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JfSalesScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JfSalesScreen.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
