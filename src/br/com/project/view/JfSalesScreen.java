@@ -1,29 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.project.view;
 
 import br.com.project.dao.ClientDao;
 import br.com.project.dao.ProductsDao;
 import br.com.project.model.Client;
 import br.com.project.model.Products;
+import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Cassiano
- */
 public class JfSalesScreen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JfSalesScreen
-     */
+    public double total, price, subTotal;
+    public int quantity;
+    public Client client;
+
+    public DefaultTableModel shoppingCar;
+
     public JfSalesScreen() {
         initComponents();
+        this.getContentPane().setBackground(Color.WHITE);
     }
 
     /**
@@ -102,6 +100,11 @@ public class JfSalesScreen extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Produto"));
 
         buttonRemoveItem.setText("Remover Item");
+        buttonRemoveItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveItemActionPerformed(evt);
+            }
+        });
 
         buttonAddItem.setText("Adicionar Item");
         buttonAddItem.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +118,12 @@ public class JfSalesScreen extends javax.swing.JFrame {
         jLabel6.setText("Produto:");
 
         jLabel7.setText("Preço:");
+
+        txtIdProduct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdProductKeyPressed(evt);
+            }
+        });
 
         txtDescriptionProduct.setEditable(false);
 
@@ -242,6 +251,11 @@ public class JfSalesScreen extends javax.swing.JFrame {
                 txtCpfClientActionPerformed(evt);
             }
         });
+        txtCpfClient.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCpfClientKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -272,17 +286,18 @@ public class JfSalesScreen extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCpfClient, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCpfClient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel4)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSearchClient)
                     .addComponent(txtNameClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Carrinho de Compras"));
@@ -344,6 +359,11 @@ public class JfSalesScreen extends javax.swing.JFrame {
         });
 
         buttonCancel.setText("Cancelar Venda");
+        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -412,12 +432,17 @@ public class JfSalesScreen extends javax.swing.JFrame {
     private void buttonPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPaymentActionPerformed
 //        ABRIR TELA DE PAGAMENTOS
         JfPayment jfPayment = new JfPayment();
+        jfPayment.txtTotalPayment.setText(String.valueOf(total));
+        jfPayment.clientPayment = client;
+        jfPayment.shoppingCarPayment = shoppingCar;
+
         jfPayment.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonPaymentActionPerformed
 
     private void buttonSearchClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchClientActionPerformed
 //           BUDSCAR CLIENTE
-        Client client = new Client();
+        client = new Client();
         ClientDao clientDao = new ClientDao();
 
         client = clientDao.searchClientByIndividualRegistration(txtCpfClient.getText());
@@ -437,17 +462,15 @@ public class JfSalesScreen extends javax.swing.JFrame {
 
     private void buttonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddItemActionPerformed
 //      ADICIONAR ITEM
-        double total = 0;
-        double subTotal;
-        int quantity = Integer.parseInt(txtProductQuantity.getText());
-        double price = Double.parseDouble(txtPriceProduct.getText());
+        quantity = Integer.parseInt(txtProductQuantity.getText());
+        price = Double.parseDouble(txtPriceProduct.getText());
 
         subTotal = quantity * price;
 
         total += subTotal;
         txtTotalSale.setText(String.valueOf(total));
 
-        DefaultTableModel shoppingCar = (DefaultTableModel) shoppingCartTable.getModel();
+        shoppingCar = (DefaultTableModel) shoppingCartTable.getModel();
         shoppingCar.addRow(new Object[]{
             txtIdProduct.getText(),
             txtDescriptionProduct.getText(),
@@ -456,6 +479,56 @@ public class JfSalesScreen extends javax.swing.JFrame {
             subTotal
         });
     }//GEN-LAST:event_buttonAddItemActionPerformed
+
+    private void txtCpfClientKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfClientKeyPressed
+//        NESSE MÉTODO INCIAMOS A BUSCA PELO CLIENTE CLICANDO A TECLA ENTER
+//        ATRAVÉS DO GET KEY CODE PEGAMOS UM EVENTO DO DO TECLADO QUE NO CASO A TECLA ENTER        
+        ClientDao clientDao = new ClientDao();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            client = clientDao.searchClientByIndividualRegistration(txtCpfClient.getText());
+            txtNameClient.setText(client.getName());
+        }
+    }//GEN-LAST:event_txtCpfClientKeyPressed
+
+    private void txtIdProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdProductKeyPressed
+        Products products = new Products();
+        ProductsDao productsDao = new ProductsDao();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            products = productsDao.searchProductsByID(Integer.parseInt(txtIdProduct.getText()));
+
+            txtDescriptionProduct.setText(products.getDescription());
+            txtPriceProduct.setText(String.valueOf(products.getPrice()));
+            txtStockQuantity.setText(String.valueOf(products.getStockQuantity()));
+
+        }
+    }//GEN-LAST:event_txtIdProductKeyPressed
+
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+        int option;
+        option = JOptionPane.showConfirmDialog(null, "tem certeza que deseja cancelar a venda?");
+        if (option == 0) {
+            JfMenu jfMenu = new JfMenu();
+            this.dispose();
+            jfMenu.setVisible(true);
+        } else if (option == 1) {
+            JfSalesScreen jfSalesScreen = new JfSalesScreen();
+            this.dispose();
+
+            jfSalesScreen.setVisible(true);
+        }
+    }//GEN-LAST:event_buttonCancelActionPerformed
+
+    private void buttonRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveItemActionPerformed
+//        REMOVER ITEM
+        double priceProduct;
+        
+        priceProduct = Double.parseDouble(shoppingCartTable.getValueAt(shoppingCartTable.getSelectedRow(), 4).toString());
+        
+        total -= priceProduct;
+        shoppingCar.removeRow(shoppingCartTable.getSelectedRow());
+        
+        txtTotalSale.setText(String.valueOf(total));
+    }//GEN-LAST:event_buttonRemoveItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -509,17 +582,17 @@ public class JfSalesScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel3;
+    public javax.swing.JPanel jPanel4;
+    public javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable shoppingCartTable;
     private javax.swing.JFormattedTextField txtCpfClient;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtDescriptionProduct;
-    private javax.swing.JTextField txtIdProduct;
+    public javax.swing.JTextField txtIdProduct;
     private javax.swing.JTextField txtNameClient;
     private javax.swing.JTextField txtPriceProduct;
     private javax.swing.JTextField txtProductQuantity;

@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.project.view;
 
-/**
- *
- * @author Cassiano
- */
+import br.com.project.model.Client;
+import javax.swing.table.DefaultTableModel;
+
 public class JfPayment extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JfPayment
-     */
+    public Client clientPayment = new Client();
+    public DefaultTableModel shoppingCarPayment;
+
     public JfPayment() {
         initComponents();
+
+        txtCardPayment.setText("0");
+        txtMoneyPayment.setText("0");
+        txtCheckPayment.setText("0");
+        txtChangePayment.setText("0");
+
     }
 
     /**
@@ -113,6 +113,11 @@ public class JfPayment extends javax.swing.JFrame {
 
         buttonFinalizeSale.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         buttonFinalizeSale.setText("Finalizar Venda");
+        buttonFinalizeSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFinalizeSaleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,6 +195,25 @@ public class JfPayment extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonFinalizeSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizeSaleActionPerformed
+//        FINALIZAR VENDA
+//        CALCULAR TROCO
+        double paymentMoney, paymentCard, paymentCheck, totalPaid, totalSale, changeOfMoney;
+
+        paymentMoney = Double.parseDouble(txtMoneyPayment.getText());
+        paymentCard = Double.parseDouble(txtCardPayment.getText());
+        paymentCheck = Double.parseDouble(txtCheckPayment.getText());
+
+        totalSale = Double.parseDouble(txtTotalPayment.getText());
+
+        totalPaid = paymentMoney + paymentCard + paymentCheck;
+
+        changeOfMoney = totalSale - totalPaid;
+
+        txtChangePayment.setText(String.valueOf(changeOfMoney));
+
+    }//GEN-LAST:event_buttonFinalizeSaleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,7 +258,7 @@ public class JfPayment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea textAreaNote;
@@ -242,6 +266,6 @@ public class JfPayment extends javax.swing.JFrame {
     private javax.swing.JTextField txtChangePayment;
     private javax.swing.JTextField txtCheckPayment;
     private javax.swing.JTextField txtMoneyPayment;
-    private javax.swing.JTextField txtTotalPayment;
+    public javax.swing.JTextField txtTotalPayment;
     // End of variables declaration//GEN-END:variables
 }
