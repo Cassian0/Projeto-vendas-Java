@@ -228,7 +228,7 @@ public class ClientDao {
             client.setNeighborhood(result.getString("neighborhood"));
             client.setCity(result.getString("city"));
             client.setState(result.getString("state"));
-
+            System.out.println(individualRegistration);
             return client;
 
         } catch (SQLException err) {
