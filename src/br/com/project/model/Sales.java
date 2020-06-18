@@ -5,7 +5,7 @@ public class Sales {
     private int id;
     private Client client;
     private String DateSale;
-    private double totalVenda;
+    private double totalSale;
     private String note; // Observação
 
     public int getId() {
@@ -32,12 +32,12 @@ public class Sales {
         this.DateSale = DateSale;
     }
 
-    public double getTotalVenda() {
-        return totalVenda;
+    public double getTotalSale() {
+        return totalSale;
     }
 
-    public void setTotalVenda(double totalVenda) {
-        this.totalVenda = totalVenda;
+    public void setTotalSale(double totalSale) {
+        this.totalSale = totalSale;
     }
 
     public String getNote() {

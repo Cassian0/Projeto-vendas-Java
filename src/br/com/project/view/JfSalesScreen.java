@@ -497,11 +497,11 @@ public class JfSalesScreen extends javax.swing.JFrame {
     private void txtCpfClientKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfClientKeyPressed
 //        NESSE MÉTODO INCIAMOS A BUSCA PELO CLIENTE CLICANDO A TECLA ENTER
 //        ATRAVÉS DO GET KEY CODE PEGAMOS UM EVENTO DO DO TECLADO QUE NO CASO A TECLA ENTER        
-   //     ClientDao clientDao = new ClientDao();
-     //   if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-     //       client = clientDao.searchClientByIndividualRegistration(txtCpfClient.getText());
-     //       txtNameClient.setText(client.getName());
-       // }
+        ClientDao clientDao = new ClientDao();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            client = clientDao.searchClientByIndividualRegistration(txtCpfClient.getText());
+            txtNameClient.setText(client.getName());
+        }
     }//GEN-LAST:event_txtCpfClientKeyPressed
 
     private void txtIdProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdProductKeyPressed

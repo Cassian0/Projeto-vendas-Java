@@ -1,12 +1,19 @@
 package br.com.project.view;
 
+import br.com.project.dao.SalesDao;
 import br.com.project.model.Client;
+import br.com.project.model.Sales;
+import br.com.project.model.Utilities;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class JfPayment extends javax.swing.JFrame {
 
     public Client clientPayment = new Client();
     public DefaultTableModel shoppingCarPayment;
+    public String dateFormat;
 
     public JfPayment() {
         initComponents();
@@ -49,6 +56,11 @@ public class JfPayment extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tela de Pagamentos");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(155, 155, 255));
 
@@ -210,9 +222,38 @@ public class JfPayment extends javax.swing.JFrame {
 
         changeOfMoney = totalSale - totalPaid;
 
-        txtChangePayment.setText(String.valueOf(changeOfMoney));
+        if (totalPaid < totalSale) {
+            JOptionPane.showMessageDialog(null, "Valor insuficiente");
+
+        } else {
+
+            txtChangePayment.setText(String.valueOf(changeOfMoney));
+
+            Client client = new Client();
+            client.setId(clientPayment.getId());
+
+            Sales sales = new Sales();
+            sales.setClient(client);
+            sales.setDateSale(dateFormat);
+            sales.setTotalSale(totalSale);
+            sales.setNote(textAreaNote.getText());
+
+            SalesDao salesDao = new SalesDao();
+            salesDao.registerSales(sales);
+
+            JOptionPane.showMessageDialog(null, "Venda realizada com sucesso");
+
+            this.dispose();
+
+        }
 
     }//GEN-LAST:event_buttonFinalizeSaleActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Date date = new Date();
+        SimpleDateFormat dateBr = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat = dateBr.format(date);
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

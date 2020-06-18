@@ -124,6 +124,11 @@ public class JfMenu extends javax.swing.JFrame {
         menuSale.add(menuOpenPdv);
 
         menuSalesHistory.setText("Histórico de Vendas");
+        menuSalesHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSalesHistoryActionPerformed(evt);
+            }
+        });
         menuSale.add(menuSalesHistory);
 
         jMenuBar1.add(menuSale);
@@ -266,6 +271,12 @@ public class JfMenu extends javax.swing.JFrame {
         JfSalesScreen jfSales = new JfSalesScreen();
         jfSales.setVisible(true);
     }//GEN-LAST:event_menuOpenPdvActionPerformed
+
+    private void menuSalesHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalesHistoryActionPerformed
+        //ABRIR HISTORICO DE VENDAS
+        JfSalesHistory jfSalesHistory = new JfSalesHistory();
+        jfSalesHistory.setVisible(true);
+    }//GEN-LAST:event_menuSalesHistoryActionPerformed
 
     /**
      * @param args the command line arguments
