@@ -1,7 +1,11 @@
 package br.com.project.view;
 
+import br.com.project.dao.ProductsDao;
+import br.com.project.dao.SaleItemDao;
 import br.com.project.dao.SalesDao;
 import br.com.project.model.Client;
+import br.com.project.model.Products;
+import br.com.project.model.SaleItem;
 import br.com.project.model.Sales;
 import br.com.project.model.Utilities;
 import java.text.SimpleDateFormat;
@@ -10,19 +14,19 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class JfPayment extends javax.swing.JFrame {
-
+    
     public Client clientPayment = new Client();
     public DefaultTableModel shoppingCarPayment;
     public String dateFormat;
-
+    
     public JfPayment() {
         initComponents();
-
+        
         txtCardPayment.setText("0");
         txtMoneyPayment.setText("0");
         txtCheckPayment.setText("0");
         txtChangePayment.setText("0");
-
+        
     }
 
     /**
@@ -211,40 +215,78 @@ public class JfPayment extends javax.swing.JFrame {
 //        FINALIZAR VENDA
 //        CALCULAR TROCO
         double paymentMoney, paymentCard, paymentCheck, totalPaid, totalSale, changeOfMoney;
-
+        
         paymentMoney = Double.parseDouble(txtMoneyPayment.getText());
         paymentCard = Double.parseDouble(txtCardPayment.getText());
         paymentCheck = Double.parseDouble(txtCheckPayment.getText());
 
+        //CALCULAR O TOTAL E O TROCO
         totalSale = Double.parseDouble(txtTotalPayment.getText());
-
+        
         totalPaid = paymentMoney + paymentCard + paymentCheck;
-
+        
         changeOfMoney = totalSale - totalPaid;
-
+        txtChangePayment.setText(String.valueOf(changeOfMoney));
+        
         if (totalPaid < totalSale) {
             JOptionPane.showMessageDialog(null, "Valor insuficiente");
-
+            
         } else {
-
+            
             txtChangePayment.setText(String.valueOf(changeOfMoney));
 
-            Client client = new Client();
-            client.setId(clientPayment.getId());
-
+//            Client client = new Client();
+//            client.setId(clientPayment.getId());
             Sales sales = new Sales();
-            sales.setClient(client);
+            sales.setClient(clientPayment);
             sales.setDateSale(dateFormat);
             sales.setTotalSale(totalSale);
             sales.setNote(textAreaNote.getText());
-
+            
             SalesDao salesDao = new SalesDao();
             salesDao.registerSales(sales);
 
+            //RETORNA O ID DA ULTIMA VENDA 
+            sales.setId(salesDao.returnLastSale());
+            //System.out.println("id ultima venda: " + sales.getId());
+
+            //CADASTRANDO PRODUTOS NA TABELA DE ITENS VENDAS
+            for (int i = 0; i < shoppingCarPayment.getRowCount(); i++) {// getRowCount retorna um numero de linha da defaultTableModel
+
+                //BAIXA NO ESTOQUE (QUANTIDADE EM ESTOQUE/ QUANTIDADE COMPRADA/ QUANTIDADE ATUALIZADA)
+                int stockQuantity, purchasedQuantity, updatedQuantity;                
+                ProductsDao productsDao = new ProductsDao();
+
+                //PEGA O ID DA VENDA
+                SaleItem saleItem = new SaleItem();
+                saleItem.setSales(sales);
+                
+                Products products = new Products();                          //0 REPRESENTA A COLUNA DA TABELA
+                products.setId(Integer.parseInt(shoppingCarPayment.getValueAt(i, 0).toString()));//PEGA O CODIGO DA LINHA SELECIONADA
+                saleItem.setProducts(products);                             //i REPRESENTA A LINHA DA TABELA 
+                
+                saleItem.setQuantity(Integer.parseInt(shoppingCarPayment.getValueAt(i, 2).toString()));//PEGA A QUANTIDADE
+                
+                saleItem.setSubTotal(Double.parseDouble(shoppingCarPayment.getValueAt(i, 4).toString()));//PEGA O SUBTOTAL
+
+                //BAIXA NO ESTOQUE
+                stockQuantity = productsDao.returnCurrentyIventory(products.getId());//PEGA O ID
+                purchasedQuantity = Integer.parseInt(shoppingCarPayment.getValueAt(i, 2).toString());//QUANTIDADE COMPRADA
+                updatedQuantity = stockQuantity - purchasedQuantity;
+
+                //METODO BAIXA MO ESTOQUE 
+                productsDao.writeOffStock(products.getId(), updatedQuantity);
+
+                //METODO CADASTRAR ITEM
+                SaleItemDao saleItemDao = new SaleItemDao();
+                saleItemDao.registerItem(saleItem);
+                
+            }
+            
             JOptionPane.showMessageDialog(null, "Venda realizada com sucesso");
-
+            
             this.dispose();
-
+            
         }
 
     }//GEN-LAST:event_buttonFinalizeSaleActionPerformed

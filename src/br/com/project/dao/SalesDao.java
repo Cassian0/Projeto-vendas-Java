@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -36,7 +37,6 @@ public class SalesDao {
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar venda");
             System.out.println("Erro: " + err);
-            System.out.println(sales.getDateSale());
         }
     }
 
@@ -59,23 +59,32 @@ public class SalesDao {
         }
     }
 
-    public List<Sales> listSales() {
-
+    //METODO FILTRAR VENDAS POR DATA
+    public List<Sales> listSaleForDate(LocalDate startDate,LocalDate endDate) {
+        //LISTA 
         List<Sales> dataSale = new ArrayList<>();
 
         try {
-            String query = "SELECT * FROM sales";
-
+            // CRIAR SQL, ORGANIZAR E EXECUTAR
+            String query = "SELECT s.id, date_format(s.saleDate, '%d/%m/%Y') as formatSaleDate, s.totalSale, "
+                    + "s.observation, c.name FROM sales as s INNER JOIN clients as c "
+                    + "ON s.idClient = c.id WHERE s.saleDate BETWEEN ? AND ?";
+            
             prepared = connection.prepareStatement(query);
+            prepared.setString(1, startDate.toString());
+            prepared.setString(2, endDate.toString());
+            
             result = prepared.executeQuery();
             while (result.next()) {
                 Sales sales = new Sales();
-                sales.setId(result.getInt("id"));
-                sales.setDateSale(result.getString("saleDate"));
-                sales.setTotalSale(result.getDouble("totalSale"));
-                sales.setNote(result.getString("observation"));
+                sales.setId(result.getInt("s.id"));
+                sales.setDateSale(result.getString("formatSaleDate"));
+                sales.setTotalSale(result.getDouble("s,totalSale"));
+                sales.setNote(result.getString("s.observation"));
                 Client client = new Client();
-                client.setId(result.getInt("idClient"));
+                client.setName(result.getString("c.name"));
+                
+                // ADICIONANDO O OBJETO CLIENTE DENTRO DO OBJETO VENDAS
                 sales.setClient(client);
                 dataSale.add(sales);
             }
@@ -84,7 +93,29 @@ public class SalesDao {
             System.out.println("Erro" + err);
             return null;
         }
-
+    }
+    
+    public double returnTotalSaleForDate(LocalDate saleDate){
+        
+        try {
+            
+            double totalSale = 0;
+            
+            String query = "SELECT SUM(totalSale) as total FROM sales WHERE saleDate = ?";
+            
+            prepared = connection.prepareStatement(query);
+            prepared.setString(1, saleDate.toString());
+            
+            result = prepared.executeQuery();
+            result.next();
+            
+            totalSale = result.getDouble("total");
+            
+            return totalSale;
+            
+        } catch (SQLException err) {
+            throw new RuntimeException(err);
+        }
     }
 
 }

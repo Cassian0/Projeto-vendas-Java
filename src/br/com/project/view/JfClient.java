@@ -293,7 +293,7 @@ public class JfClient extends javax.swing.JFrame {
                                     .addComponent(jLabel12)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(txtComplementClient, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         personal_data_panelLayout.setVerticalGroup(
             personal_data_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,7 +400,7 @@ public class JfClient extends javax.swing.JFrame {
                         .addComponent(txtSearchClient, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonSearchClient)
-                        .addGap(0, 255, Short.MAX_VALUE)))
+                        .addGap(0, 199, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -451,7 +451,7 @@ public class JfClient extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(235, 235, 235)
+                .addGap(207, 207, 207)
                 .addComponent(buttonNew)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSave)
@@ -478,7 +478,7 @@ public class JfClient extends javax.swing.JFrame {
                     .addComponent(buttonSave)
                     .addComponent(buttonChange)
                     .addComponent(buttonDelete))
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
