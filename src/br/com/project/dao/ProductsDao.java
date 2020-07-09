@@ -108,7 +108,7 @@ public class ProductsDao {
             prepared.close();
 
             JOptionPane.showMessageDialog(null, "Produto Excluido com Sucesso!");
-            
+
         } catch (Exception err) {
             System.out.println("Erro: " + err);
         }
@@ -146,25 +146,27 @@ public class ProductsDao {
     }
 
 //    CONSULTAR PRODUTO POR NOME
-    public Products searchProductsByName(String name) {
+    public List<Products> searchProductsByName(String description) {
+        List<Products> dataProducts = new ArrayList<>();
         try {
-            String query = "SELECT * FROM products INNER JOIN providers"
-                    + "ON products.idProviders = providers.id WHERE description ?";
+            String query = "SELECT * FROM products INNER JOIN providers "
+                    + "ON products.idProviders = providers.id WHERE description LIKE ?";
             prepared = connection.prepareStatement(query);
-            prepared.setString(1, "%" + name + "%");
+            prepared.setString(1, "%" + description + "%");
             result = prepared.executeQuery();
-            result.next();
-            Products products = new Products();
-            products.setId(result.getInt("products.id"));
-            products.setDescription(result.getString("description"));
-            products.setPrice(result.getDouble("price"));
-            products.setStockQuantity(result.getInt("stockQuantity"));
-            Provider provider = new Provider();
-            provider.setName(result.getString("providers.name"));
+            while (result.next()) {
+                Products products = new Products();
+                products.setId(result.getInt("products.id"));
+                products.setDescription(result.getString("description"));
+                products.setPrice(result.getDouble("price"));
+                products.setStockQuantity(result.getInt("stockQuantity"));
+                Provider provider = new Provider();
+                provider.setName(result.getString("providers.name"));
 
-            products.setProvider(provider);
-
-            return products;
+                products.setProvider(provider);
+                dataProducts.add(products);
+            }
+            return dataProducts;
 
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Produto não encontrado");
@@ -197,13 +199,13 @@ public class ProductsDao {
     }
 
 //    METODO DE BAIXA NO ESTOQUE
-    public void writeOffStock(int id, int newStockQuantity) {
+    public void writeOffStock(int newStockQuantity, int id) {
         try {
             String query = "UPDATE products SET stockQuantity = ? WHERE id = ?";
 
             prepared = connection.prepareStatement(query);
-            prepared.setInt(1, id);
-            prepared.setInt(2, newStockQuantity);
+            prepared.setInt(1, newStockQuantity);
+            prepared.setInt(2, id);
             prepared.execute();
             prepared.close();
 

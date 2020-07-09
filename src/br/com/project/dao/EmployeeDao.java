@@ -4,6 +4,7 @@ import br.com.project.jdbc.ConnectionFactory;
 import br.com.project.model.Employee;
 import br.com.project.view.JfLogin;
 import br.com.project.view.JfMenu;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -205,15 +206,29 @@ public class EmployeeDao {
 
             result = prepared.executeQuery();
             if (result.next()) {
-                JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
-                JfMenu jfMenu = new JfMenu();
-                jfMenu.setVisible(true);
 
+                //CASO O USUÁRIO SEJA DO TIPO ADMIN
+                if (result.getString("accessLevel").equals("Administrador")) {
+                    JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
+                    JfMenu jfMenu = new JfMenu();
+                    jfMenu.setVisible(true);
+                } 
+                //CASO O USUARIO SEJA DO TIPO USUARIO
+                else if (result.getString("accessLevel").equals("Usuário")) {
+                    JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
+                    JfMenu jfMenu = new JfMenu();
+                    //DESABILITAR O MENU
+                    jfMenu.menuSalesHistory.setEnabled(false);
+                    //OU ESCONDER O MENU
+                    jfMenu.menuPositionDay.setVisible(false);
+
+                    jfMenu.setVisible(true);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos");
                 new JfLogin().setVisible(true);
             }
-        } catch (Exception err) {
+        } catch (HeadlessException | SQLException err) {
             System.out.println("Erro: " + err);
         }
     }

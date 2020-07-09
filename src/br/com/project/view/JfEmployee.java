@@ -176,6 +176,7 @@ public class JfEmployee extends javax.swing.JFrame {
         });
 
         txtKeyEmployee.setEditable(false);
+        txtKeyEmployee.setEnabled(false);
 
         txtEmailEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -687,7 +688,7 @@ public class JfEmployee extends javax.swing.JFrame {
         employee.setNeighborhood(txtNeighborhoodEmployee.getText());
         employee.setCity(txtCityEmployee.getText());
         employee.setState(comBoxStateEmployee.getSelectedItem().toString());
-        employee.setPassword(txtPasswordEmployee.getPassword().toString());
+        employee.setPassword(String.valueOf(txtPasswordEmployee.getPassword()));
         employee.setJobRole(txtJobRoleEmployee.getText());
         employee.setAccessLevel(comBoxAccessLevelEmployee.getSelectedItem().toString());
 
@@ -714,12 +715,12 @@ public class JfEmployee extends javax.swing.JFrame {
         employee.setNeighborhood(txtNeighborhoodEmployee.getText());
         employee.setCity(txtCityEmployee.getText());
         employee.setState(comBoxStateEmployee.getSelectedItem().toString());
-        employee.setPassword(txtPasswordEmployee.getPassword().toString());
+        employee.setPassword(String.valueOf(txtPasswordEmployee.getPassword()));
         employee.setJobRole(txtJobRoleEmployee.getText());
         employee.setAccessLevel(comBoxAccessLevelEmployee.getSelectedItem().toString());
 
         employee.setId(Integer.parseInt(txtKeyEmployee.getText()));
-
+        
         employeeDao = new EmployeeDao();
         employeeDao.changeEmployee(employee);
 

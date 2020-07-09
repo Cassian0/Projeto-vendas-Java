@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.project.view;
 
 import br.com.project.dao.EmployeeDao;
 import com.sun.glass.events.KeyEvent;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Cassiano
- */
+
 public class JfLogin extends javax.swing.JFrame {
 
     /**
@@ -164,7 +156,8 @@ public class JfLogin extends javax.swing.JFrame {
             String email, password;
 
             email = txtEmail.getText();
-            password = txtPassword.getText();
+            password = String.valueOf(txtPassword.getPassword());
+            System.out.println(password);
 
             if ("".equals(email) || "".equals(password)) {
                 JOptionPane.showMessageDialog(null, "Preencha os campos");
@@ -203,7 +196,7 @@ public class JfLogin extends javax.swing.JFrame {
                 String email, password;
 
                 email = txtEmail.getText();
-                password = txtPassword.getText();
+                password = String.valueOf(txtPassword.getPassword());
 
                 if ("".equals(email) || "".equals(password)) {
                     JOptionPane.showMessageDialog(null, "Preencha os campos");

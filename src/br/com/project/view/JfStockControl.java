@@ -1,19 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.project.view;
 
-/**
- *
- * @author Cassiano
- */
+import br.com.project.dao.ProductsDao;
+import br.com.project.model.Products;
+import br.com.project.model.Utilities;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class JfStockControl extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JfStockControl
-     */
+    public int idProduct, newQuantity;
+
+    public void listProduct() {
+        ProductsDao productsDao = new ProductsDao();
+        List<Products> dataProducts = productsDao.listProducts();
+        DefaultTableModel dataTable = (DefaultTableModel) listProductTable.getModel();
+        dataTable.setNumRows(0);
+
+        for (Products product1 : dataProducts) {
+            dataTable.addRow(new Object[]{
+                product1.getId(),
+                product1.getDescription(),
+                product1.getPrice(),
+                product1.getStockQuantity(),
+                product1.getProvider().getName()
+            }
+            );
+        }
+    }
+
     public JfStockControl() {
         initComponents();
     }
@@ -44,6 +59,11 @@ public class JfStockControl extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Controle de Estoque");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(155, 155, 255));
 
@@ -79,6 +99,11 @@ public class JfStockControl extends javax.swing.JFrame {
         txtStockQuantity.setEnabled(false);
 
         buttonSearchProduct.setText("Pesquisar");
+        buttonSearchProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchProductActionPerformed(evt);
+            }
+        });
 
         buttonAddItem.setText("Adicionar Item");
         buttonAddItem.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +135,7 @@ public class JfStockControl extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonSearchProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,19 +165,24 @@ public class JfStockControl extends javax.swing.JFrame {
                 "Código", "Descrição", "Preço", "Qtd. Estoque", "Fornecedor"
             }
         ));
+        listProductTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listProductTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listProductTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,7 +191,7 @@ public class JfStockControl extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +200,8 @@ public class JfStockControl extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -178,8 +209,58 @@ public class JfStockControl extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddItemActionPerformed
-        // TODO add your handling code here:
+        //BOTAO ADICIONAR
+        try {
+            int stockQuantity, quantity;
+
+            stockQuantity = Integer.parseInt(txtStockQuantity.getText());
+            quantity = Integer.parseInt(txtProductQuantity.getText());
+
+            newQuantity = stockQuantity + quantity;
+            txtStockQuantity.setText(String.valueOf(newQuantity));
+
+            ProductsDao productsDao = new ProductsDao();
+            productsDao.writeOffStock(newQuantity,idProduct);
+
+            JOptionPane.showMessageDialog(null, "Estoque Atualizado");
+            new Utilities().cleanScreen(jPanel2);
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, "Informe a quantidade");
+            System.out.println("Erro: " + err);
+        }
     }//GEN-LAST:event_buttonAddItemActionPerformed
+
+    private void buttonSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchProductActionPerformed
+        //BOTAO PESQUISAR
+        ProductsDao productsDao = new ProductsDao();
+        String description = txtDescriptionProduct.getText();
+        List<Products> dataProducts = productsDao.searchProductsByName(description);
+        DefaultTableModel dataTable = (DefaultTableModel) listProductTable.getModel();
+        dataTable.setNumRows(0);
+
+        for (Products products1 : dataProducts) {
+            dataTable.addRow(new Object[]{
+                products1.getId(),
+                products1.getDescription(),
+                products1.getPrice(),
+                products1.getStockQuantity(),
+                products1.getProvider().getName()
+            });
+        }
+    }//GEN-LAST:event_buttonSearchProductActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        listProduct();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void listProductTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listProductTableMouseClicked
+        // CLICAR MOUSE NA TABELA
+        idProduct = Integer.parseInt(listProductTable.getValueAt(listProductTable.getSelectedRow(), 0).toString());
+
+        txtDescriptionProduct.setText(listProductTable.getValueAt(listProductTable.getSelectedRow(), 1).toString());
+
+        txtStockQuantity.setText(listProductTable.getValueAt(listProductTable.getSelectedRow(), 3).toString());
+    }//GEN-LAST:event_listProductTableMouseClicked
 
     /**
      * @param args the command line arguments

@@ -33,6 +33,7 @@ public class JfMenu extends javax.swing.JFrame {
         menuProductQuery = new javax.swing.JMenuItem();
         menuSale = new javax.swing.JMenu();
         menuOpenPdv = new javax.swing.JMenuItem();
+        menuPositionDay = new javax.swing.JMenuItem();
         menuSalesHistory = new javax.swing.JMenuItem();
         menuConfig = new javax.swing.JMenu();
         menuChangeUser = new javax.swing.JMenuItem();
@@ -114,6 +115,11 @@ public class JfMenu extends javax.swing.JFrame {
 
         menuSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vendas.png"))); // NOI18N
         menuSale.setText("Vendas");
+        menuSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSaleActionPerformed(evt);
+            }
+        });
 
         menuOpenPdv.setText("Abrir PDV");
         menuOpenPdv.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +128,14 @@ public class JfMenu extends javax.swing.JFrame {
             }
         });
         menuSale.add(menuOpenPdv);
+
+        menuPositionDay.setText("Posição do Dia");
+        menuPositionDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPositionDayActionPerformed(evt);
+            }
+        });
+        menuSale.add(menuPositionDay);
 
         menuSalesHistory.setText("Histórico de Vendas");
         menuSalesHistory.addActionListener(new java.awt.event.ActionListener() {
@@ -259,11 +273,9 @@ public class JfMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuProductQueryActionPerformed
 
     private void menuStockControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuStockControlActionPerformed
-//      ABRIR TELA DE PRODUTOS
-        JfProducts jfProducts = new JfProducts();
-        jfProducts.product_consultation_panel.setSelectedIndex(1);
-        jfProducts.setVisible(true);
-
+//      ABRIR TELA DE CADASTRO DE PRODUTOS
+        JfStockControl jfStockControl = new JfStockControl();
+        jfStockControl.setVisible(true);
     }//GEN-LAST:event_menuStockControlActionPerformed
 
     private void menuOpenPdvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOpenPdvActionPerformed
@@ -277,6 +289,14 @@ public class JfMenu extends javax.swing.JFrame {
         JfSalesHistory jfSalesHistory = new JfSalesHistory();
         jfSalesHistory.setVisible(true);
     }//GEN-LAST:event_menuSalesHistoryActionPerformed
+
+    private void menuSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSaleActionPerformed
+
+    }//GEN-LAST:event_menuSaleActionPerformed
+
+    private void menuPositionDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPositionDayActionPerformed
+        JfTotalSaleDate jfTotalSaleDate = new JfTotalSaleDate();
+        jfTotalSaleDate.setVisible(true);    }//GEN-LAST:event_menuPositionDayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,13 +342,14 @@ public class JfMenu extends javax.swing.JFrame {
     private javax.swing.JMenu menuConfig;
     private javax.swing.JMenu menuEmployee;
     private javax.swing.JMenu menuExit;
-    private javax.swing.JMenuItem menuOpenPdv;
+    public javax.swing.JMenuItem menuOpenPdv;
+    public javax.swing.JMenuItem menuPositionDay;
     private javax.swing.JMenu menuProduct;
     private javax.swing.JMenuItem menuProductQuery;
     private javax.swing.JMenu menuProvider;
     private javax.swing.JMenuItem menuProviderControl;
-    private javax.swing.JMenu menuSale;
-    private javax.swing.JMenuItem menuSalesHistory;
+    public javax.swing.JMenu menuSale;
+    public javax.swing.JMenuItem menuSalesHistory;
     private javax.swing.JMenuItem menuStockControl;
     private javax.swing.JMenuItem menuemployeeControl;
     // End of variables declaration//GEN-END:variables
