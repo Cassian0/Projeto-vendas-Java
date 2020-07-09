@@ -240,10 +240,10 @@ public class JfSaleDetail extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable listSaleTable;
-    private javax.swing.JTextArea textAreaNote;
-    private javax.swing.JTextField txtDateSale;
-    private javax.swing.JTextField txtSaleClient;
-    private javax.swing.JTextField txtTotalSale;
+    public javax.swing.JTable listSaleTable;
+    public javax.swing.JTextArea textAreaNote;
+    public javax.swing.JTextField txtDateSale;
+    public javax.swing.JTextField txtSaleClient;
+    public javax.swing.JTextField txtTotalSale;
     // End of variables declaration//GEN-END:variables
 }

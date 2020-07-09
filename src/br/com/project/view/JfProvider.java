@@ -152,6 +152,7 @@ public class JfProvider extends javax.swing.JFrame {
         jLabel27.setText("UF:");
 
         txtKeyProvider.setEditable(false);
+        txtKeyProvider.setEnabled(false);
 
         txtNameProvider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

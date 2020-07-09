@@ -214,6 +214,7 @@ public class JfClient extends javax.swing.JFrame {
         });
 
         txtKeyClient.setEditable(false);
+        txtKeyClient.setEnabled(false);
 
         try {
             txtCellPhoneClient.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # #### - ####")));

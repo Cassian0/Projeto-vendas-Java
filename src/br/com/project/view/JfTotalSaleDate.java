@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.project.view;
 
-/**
- *
- * @author Cassiano
- */
+import br.com.project.dao.SalesDao;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+
 public class JfTotalSaleDate extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JfTotalSaleDate
-     */
     public JfTotalSaleDate() {
         initComponents();
     }
@@ -34,7 +27,7 @@ public class JfTotalSaleDate extends javax.swing.JFrame {
         txtDateConsult = new javax.swing.JFormattedTextField();
         buttonDateConsult = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTotalSale = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,13 +66,18 @@ public class JfTotalSaleDate extends javax.swing.JFrame {
         txtDateConsult.setPreferredSize(new java.awt.Dimension(34, 25));
 
         buttonDateConsult.setText("Consultar");
+        buttonDateConsult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDateConsultActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Total da Venda:");
 
-        jTextField1.setEnabled(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtTotalSale.setEnabled(false);
+        txtTotalSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtTotalSaleActionPerformed(evt);
             }
         });
 
@@ -107,7 +105,7 @@ public class JfTotalSaleDate extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(182, 182, 182))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTotalSale, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(152, 152, 152))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -124,7 +122,7 @@ public class JfTotalSaleDate extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTotalSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(72, Short.MAX_VALUE))
         );
 
@@ -148,9 +146,26 @@ public class JfTotalSaleDate extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtTotalSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalSaleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtTotalSaleActionPerformed
+
+    private void buttonDateConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDateConsultActionPerformed
+        try {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dateSale = LocalDate.parse(txtDateConsult.getText(), format);
+
+            double totalSale;
+
+            SalesDao salesDao = new SalesDao();
+            totalSale = salesDao.returnTotalSaleForDate(dateSale);
+
+            txtTotalSale.setText(String.valueOf(totalSale));
+
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, "Informe uma data correta." + err);
+        }
+    }//GEN-LAST:event_buttonDateConsultActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,7 +210,7 @@ public class JfTotalSaleDate extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JFormattedTextField txtDateConsult;
+    private javax.swing.JTextField txtTotalSale;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,14 @@
 package br.com.project.view;
 
+import br.com.project.dao.SaleItemDao;
 import br.com.project.dao.SalesDao;
+import br.com.project.model.SaleItem;
 import br.com.project.model.Sales;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class JfSalesHistory extends javax.swing.JFrame {
 
@@ -31,7 +38,7 @@ public class JfSalesHistory extends javax.swing.JFrame {
         buttonSearchDate = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        HistorySaleTable = new javax.swing.JTable();
+        historySaleTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Histórico de Vendas");
@@ -119,7 +126,7 @@ public class JfSalesHistory extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista do Histórico de Vendas"));
 
-        HistorySaleTable.setModel(new javax.swing.table.DefaultTableModel(
+        historySaleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -127,7 +134,12 @@ public class JfSalesHistory extends javax.swing.JFrame {
                 "Cod.Venda", "Cod.Cliente", "Data Venda", "Total Venda", "Observação"
             }
         ));
-        jScrollPane1.setViewportView(HistorySaleTable);
+        historySaleTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                historySaleTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(historySaleTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -165,7 +177,66 @@ public class JfSalesHistory extends javax.swing.JFrame {
 
     private void buttonSearchDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchDateActionPerformed
 
+        try {
+
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            LocalDate firstDate = LocalDate.parse(txtFirstDate.getText(), format);
+
+            LocalDate endDate = LocalDate.parse(txtEndDate.getText(), format);
+
+            salesDao = new SalesDao();
+
+            List<Sales> dataSale = salesDao.listSaleForDate(firstDate, endDate);
+
+            DefaultTableModel dataTable = (DefaultTableModel) historySaleTable.getModel();
+
+            dataTable.setNumRows(0);
+
+            for (Sales sales1 : dataSale) {
+                dataTable.addRow(new Object[]{
+                    sales1.getId(),
+                    sales1.getClient().getName(),
+                    sales1.getDateSale(),
+                    sales1.getTotalSale(),
+                    sales1.getNote()
+
+                });
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+        }
+
     }//GEN-LAST:event_buttonSearchDateActionPerformed
+
+    private void historySaleTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historySaleTableMouseClicked
+        JfSaleDetail jfsaledetail = new JfSaleDetail();
+
+        jfsaledetail.txtSaleClient.setText(historySaleTable.getValueAt(historySaleTable.getSelectedRow(), 1).toString());
+        jfsaledetail.txtDateSale.setText(historySaleTable.getValueAt(historySaleTable.getSelectedRow(), 2).toString());
+        jfsaledetail.txtTotalSale.setText(historySaleTable.getValueAt(historySaleTable.getSelectedRow(), 3).toString());
+        jfsaledetail.textAreaNote.setText(historySaleTable.getValueAt(historySaleTable.getSelectedRow(), 4).toString());
+        
+        jfsaledetail.setVisible(true);
+        int idSale = Integer.parseInt(historySaleTable.getValueAt(historySaleTable.getSelectedRow(), 0).toString());
+
+        //dados itens comprados
+        SaleItem saleItem = new SaleItem();
+        SaleItemDao saleItemDao = new SaleItemDao();
+        List<SaleItem> dataSaleItem = saleItemDao.listSaleItem(idSale);System.out.println(idSale);
+
+        DefaultTableModel dataTable = (DefaultTableModel) jfsaledetail.listSaleTable.getModel();
+        dataTable.setNumRows(0);
+
+        for (SaleItem sales1 : dataSaleItem) {
+            dataTable.addRow(new Object[]{
+                sales1.getProducts().getDescription(),
+                sales1.getQuantity(),
+                sales1.getProducts().getPrice(),
+                sales1.getSubTotal()
+            });
+        }
+    }//GEN-LAST:event_historySaleTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -206,8 +277,8 @@ public class JfSalesHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable HistorySaleTable;
     private javax.swing.JButton buttonSearchDate;
+    public javax.swing.JTable historySaleTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

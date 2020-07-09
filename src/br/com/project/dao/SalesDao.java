@@ -60,7 +60,7 @@ public class SalesDao {
     }
 
     //METODO FILTRAR VENDAS POR DATA
-    public List<Sales> listSaleForDate(LocalDate startDate,LocalDate endDate) {
+    public List<Sales> listSaleForDate(LocalDate startDate, LocalDate endDate) {
         //LISTA 
         List<Sales> dataSale = new ArrayList<>();
 
@@ -69,21 +69,21 @@ public class SalesDao {
             String query = "SELECT s.id, date_format(s.saleDate, '%d/%m/%Y') as formatSaleDate, s.totalSale, "
                     + "s.observation, c.name FROM sales as s INNER JOIN clients as c "
                     + "ON s.idClient = c.id WHERE s.saleDate BETWEEN ? AND ?";
-            
+
             prepared = connection.prepareStatement(query);
             prepared.setString(1, startDate.toString());
             prepared.setString(2, endDate.toString());
-            
+
             result = prepared.executeQuery();
             while (result.next()) {
                 Sales sales = new Sales();
                 sales.setId(result.getInt("s.id"));
                 sales.setDateSale(result.getString("formatSaleDate"));
-                sales.setTotalSale(result.getDouble("s,totalSale"));
+                sales.setTotalSale(result.getDouble("s.totalSale"));
                 sales.setNote(result.getString("s.observation"));
                 Client client = new Client();
                 client.setName(result.getString("c.name"));
-                
+
                 // ADICIONANDO O OBJETO CLIENTE DENTRO DO OBJETO VENDAS
                 sales.setClient(client);
                 dataSale.add(sales);
@@ -94,25 +94,25 @@ public class SalesDao {
             return null;
         }
     }
-    
-    public double returnTotalSaleForDate(LocalDate saleDate){
-        
+
+    public double returnTotalSaleForDate(LocalDate saleDate) {
+
         try {
-            
+
             double totalSale = 0;
-            
+
             String query = "SELECT SUM(totalSale) as total FROM sales WHERE saleDate = ?";
-            
+
             prepared = connection.prepareStatement(query);
             prepared.setString(1, saleDate.toString());
-            
+
             result = prepared.executeQuery();
             result.next();
-            
+
             totalSale = result.getDouble("total");
-            
+
             return totalSale;
-            
+
         } catch (SQLException err) {
             throw new RuntimeException(err);
         }

@@ -74,7 +74,6 @@ public class JfProducts extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Produtos");
-        setPreferredSize(new java.awt.Dimension(768, 451));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -116,6 +115,7 @@ public class JfProducts extends javax.swing.JFrame {
         jLabel6.setText("Quantidade em Estoque:");
 
         txtId.setEditable(false);
+        txtId.setEnabled(false);
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
