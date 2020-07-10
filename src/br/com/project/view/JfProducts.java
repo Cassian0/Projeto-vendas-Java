@@ -13,6 +13,7 @@ public class JfProducts extends javax.swing.JFrame {
 
     private Products products;
     private Provider provider;
+    private List<Provider> dataProvider;
     private ProductsDao productsDao;
     private List<Products> dataProducts;
     private DefaultTableModel dataTable;
@@ -403,7 +404,7 @@ public class JfProducts extends javax.swing.JFrame {
 
         provider = new Provider();
         ProviderDao providerDao = new ProviderDao();
-        provider = providerDao.searchProviderByName(productTable.getValueAt(productTable.getSelectedRow(), 4).toString());
+        dataProvider = providerDao.searchProviderByName(productTable.getValueAt(productTable.getSelectedRow(), 4).toString());
 
         comBoxProvider.removeAllItems();
         comBoxProvider.getModel().setSelectedItem(provider);
@@ -413,7 +414,7 @@ public class JfProducts extends javax.swing.JFrame {
 //        BOTAO PESQUISAR
         String name = txtSearchProduct.getText();
         productsDao = new ProductsDao();
-        dataProducts = productsDao.searchProductByProviderName(name);
+        dataProducts = productsDao.searchProductsByName(name);
         dataTable = (DefaultTableModel) productTable.getModel();
         dataTable.setNumRows(0);
 
@@ -432,7 +433,7 @@ public class JfProducts extends javax.swing.JFrame {
 
         String name = txtSearchProduct.getText();
         productsDao = new ProductsDao();
-        dataProducts = productsDao.searchProductByProviderName(name);
+        dataProducts = productsDao.searchProductsByName(name);
         dataTable = (DefaultTableModel) productTable.getModel();
         dataTable.setNumRows(0);
 

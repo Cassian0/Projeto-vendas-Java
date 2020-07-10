@@ -135,7 +135,8 @@ public class ProviderDao {
         }
     }
 
-    public Provider searchProviderByName(String name) {
+    public List<Provider> searchProviderByName(String name) {
+        List<Provider> dataProvider = new ArrayList<>();
 
         try {
             String query = "SELECT * FROM providers WHERE name LIKE ?";
@@ -144,24 +145,28 @@ public class ProviderDao {
 
             result = prepared.executeQuery();
 
-            result.next();
-            Provider provider = new Provider();
+            while (result.next()) {
+                Provider provider = new Provider();
 
-            provider.setId(result.getInt("id"));
-            provider.setName(result.getString("name"));
-            provider.setCompanyIdentificationNumber(result.getString("companyIdentificationNumber"));
-            provider.setEmail(result.getString("email"));
-            provider.setPhone(result.getString("phone"));
-            provider.setCellPhone(result.getString("cellPhone"));
-            provider.setZipCode(result.getString("zipCode"));
-            provider.setAddress(result.getString("address"));
-            provider.setNumber(result.getInt("number"));
-            provider.setComplement(result.getString("complement"));
-            provider.setNeighborhood(result.getString("neighborhood"));
-            provider.setCity(result.getString("city"));
-            provider.setState(result.getString("state"));
+                provider.setId(result.getInt("id"));
+                provider.setName(result.getString("name"));
+                provider.setCompanyIdentificationNumber(result.getString("companyIdentificationNumber"));
+                provider.setEmail(result.getString("email"));
+                provider.setPhone(result.getString("phone"));
+                provider.setCellPhone(result.getString("cellPhone"));
+                provider.setZipCode(result.getString("zipCode"));
+                provider.setAddress(result.getString("address"));
+                provider.setNumber(result.getInt("number"));
+                provider.setComplement(result.getString("complement"));
+                provider.setNeighborhood(result.getString("neighborhood"));
+                provider.setCity(result.getString("city"));
+                provider.setState(result.getString("state"));
 
-            return provider;
+                dataProvider.add(provider);
+            }
+
+            return dataProvider;
+
         } catch (SQLException err) {
             System.out.println("Erro: " + err);
             return null;
